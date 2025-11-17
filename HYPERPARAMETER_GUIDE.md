@@ -79,7 +79,11 @@ For **portfolio optimization**, I recommend:
   - Historical data window for covariance
   - Shorter = more responsive to recent changes
   - Longer = more stable, less responsive
-  - Typical: 252 (1 year)
+  - **Recommended: 189 days (9 months)** - optimal for quarterly rebalancing
+    - Captures 3 quarters of data (aligns with rebalancing frequency)
+    - Better average Sharpe ratio than 252 days in backtests
+    - More responsive to recent market conditions
+  - Typical: 252 (1 year) - may include outdated information for quarterly strategies
 
 ## How to Run Hyperparameter Optimization
 

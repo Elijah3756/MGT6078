@@ -50,7 +50,7 @@ def load_config(config_path: Optional[str] = None) -> Dict[str, Any]:
             'max_weight': 2.0
         },
         'data': {
-            'lookback_days': 252,
+            'lookback_days': 189,  # 9 months - optimal for quarterly rebalancing
             'quarters': ['Q1_2024', 'Q2_2024', 'Q3_2024', 'Q4_2024', 'Q1_2025', 'Q2_2025', 'Q3_2025']
         },
         'output': {

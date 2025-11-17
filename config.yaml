@@ -35,7 +35,12 @@ black_litterman:
 
 # Data Settings
 data:
-  lookback_days: 252  # Days of historical data for covariance (1 year trading days)
+  lookback_days: 189  # Days of historical data for covariance (~9 months trading days)
+  # Recommended: 189 days (9 months) for quarterly rebalancing
+  # - Captures 3 quarters of data (aligns with rebalancing frequency)
+  # - More responsive to recent market conditions than 252 days
+  # - Better average Sharpe ratio performance in backtests
+  # Options: 126 (6mo), 189 (9mo), 252 (12mo), 315 (15mo)
   
   # Quarter definitions
   quarters:
