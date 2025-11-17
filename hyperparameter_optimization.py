@@ -57,9 +57,10 @@ class HyperparameterOptimizer:
         """
         self.quarters = quarters or ['Q1_2024', 'Q2_2024', 'Q3_2024', 'Q4_2024']
         self.loader = DataLoader()
-        self.formatter = DataFormatter()
         self.backtester = Backtester(initial_capital=100000)
         self._evaluation_cache = {}  # Cache for repeated evaluations
+        self._llm_views_cache = {}  # Cache for LLM views by quarter
+        self._analyzer = None  # Single analyzer instance (reused)
         
     def define_search_space(self) -> Dict:
         """
@@ -140,12 +141,7 @@ class HyperparameterOptimizer:
                 return self._evaluation_cache[config_key]
         
         try:
-            # Initialize components with config
-            analyzer = LLMAnalyzer(
-                model_type=llm_type,
-                temperature=config.get('llm_temperature', 0.7),
-                top_p=config.get('llm_top_p', 0.9)
-            )
+            # Initialize optimizer with config
             optimizer = PortfolioOptimizer(
                 allow_shorts=config.get('allow_shorts', True),
                 max_weight=config.get('max_weight', 2.0)
@@ -159,12 +155,40 @@ class HyperparameterOptimizer:
                 relative_confidence=config.get('relative_confidence', 1.0)
             )
             
-            # Process quarters
+            # Initialize analyzer once (reused across trials)
+            # LLM views don't depend on optimizer hyperparameters, so cache them
+            if self._analyzer is None:
+                self._analyzer = LLMAnalyzer(
+                    model_type=llm_type,
+                    temperature=config.get('llm_temperature', 0.7),
+                    top_p=config.get('llm_top_p', 0.9)
+                )
+            
+            # Process quarters with cached LLM views
             portfolio_results = []
             for quarter in self.quarters:
                 try:
                     quarter_data = self.loader.load_quarterly_data(quarter)
-                    llm_views = analyzer.generate_views(quarter_data)
+                    
+                    # Check cache for LLM views (views don't depend on optimizer hyperparameters)
+                    if quarter not in self._llm_views_cache:
+                        # Try to load from saved views file first
+                        views_file = os.path.join('output', 'views', f'{quarter}_views.json')
+                        if os.path.exists(views_file):
+                            try:
+                                with open(views_file, 'r') as f:
+                                    cached_views = json.load(f)
+                                self._llm_views_cache[quarter] = cached_views
+                                print(f"  Loaded cached views for {quarter}")
+                            except Exception as e:
+                                print(f"  Warning: Could not load cached views for {quarter}: {e}")
+                                # Generate new views
+                                self._llm_views_cache[quarter] = self._analyzer.generate_views(quarter_data)
+                        else:
+                            # Generate new views and cache them
+                            self._llm_views_cache[quarter] = self._analyzer.generate_views(quarter_data)
+                    
+                    llm_views = self._llm_views_cache[quarter]
                     
                     portfolio = optimizer.optimize_quarter(
                         quarter_data, 

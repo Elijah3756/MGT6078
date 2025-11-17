@@ -11,13 +11,13 @@ import os
 sys.path.insert(0, os.path.dirname(__file__))
 
 from data.loader import DataLoader
-from data.formatter import DataFormatter
 from llm.analyzer import LLMAnalyzer
 from optimization.portfolio_optimizer import PortfolioOptimizer
 from backtesting.backtester import Backtester
 from backtesting.metrics import PerformanceMetrics
 from backtesting.visualization import Visualizer
 from reports.report_generator import ReportGenerator
+from config_loader import get_config
 
 import argparse
 import json
@@ -26,33 +26,44 @@ import json
 def main():
     """Main execution pipeline"""
     
-    # Parse arguments
+    # Load configuration
+    config = get_config()
+    
+    # Parse arguments (CLI args override config)
     parser = argparse.ArgumentParser(description='LLM-Powered Black-Litterman Portfolio Optimization')
-    parser.add_argument('--llm-type', type=str, default='finance-llm',
+    parser.add_argument('--llm-type', type=str, default=None,
                        choices=['finance-llm', 'simulated'],
-                       help='LLM model type: finance-llm (local AdaptLLM model, default) or simulated (fallback only)')
-    parser.add_argument('--quarters', type=str, nargs='+',
-                       default=['Q1_2024', 'Q2_2024', 'Q3_2024', 'Q4_2024', 'Q1_2025', 'Q2_2025', 'Q3_2025'],
-                       help='Quarters to analyze')
+                       help='LLM model type (overrides config.yaml)')
+    parser.add_argument('--quarters', type=str, nargs='+', default=None,
+                       help='Quarters to analyze (overrides config.yaml)')
     parser.add_argument('--skip-charts', action='store_true',
                        help='Skip chart generation')
-    parser.add_argument('--allow-shorts', action='store_true', default=True,
-                       help='Allow short positions (default: True)')
+    parser.add_argument('--allow-shorts', action='store_true', default=None,
+                       help='Allow short positions (overrides config.yaml)')
     parser.add_argument('--long-only', action='store_true',
                        help='Restrict to long-only positions (no shorting)')
     
     args = parser.parse_args()
     
+    # Use config values with CLI overrides
+    llm_type = args.llm_type or config['llm']['model_type']
+    quarters = args.quarters or config['data']['quarters']
+    allow_shorts = config['black_litterman']['allow_shorts'] if args.allow_shorts is None else args.allow_shorts
+    
     # Handle long-only flag (overrides allow-shorts)
-    allow_shorts = not args.long_only if args.long_only else args.allow_shorts
+    if args.long_only:
+        allow_shorts = False
+    
+    initial_capital = config['portfolio']['initial_capital']
     
     print("\n" + "="*80)
     print("LLM-POWERED BLACK-LITTERMAN PORTFOLIO OPTIMIZATION")
     print("="*80)
     print(f"\nConfiguration:")
-    print(f"  LLM Type: {args.llm_type}")
-    print(f"  Quarters: {', '.join(args.quarters)}")
+    print(f"  LLM Type: {llm_type}")
+    print(f"  Quarters: {', '.join(quarters)}")
     print(f"  Allow Shorts: {allow_shorts}")
+    print(f"  Initial Capital: ${initial_capital:,}")
     print(f"="*80)
     
     # Initialize components
@@ -61,10 +72,22 @@ def main():
     print("="*80)
     
     loader = DataLoader()
-    formatter = DataFormatter()
-    analyzer = LLMAnalyzer(model_type=args.llm_type)
-    optimizer = PortfolioOptimizer(allow_shorts=allow_shorts)
-    backtester = Backtester(initial_capital=100000)
+    analyzer = LLMAnalyzer(model_type=llm_type)
+    
+    # Initialize optimizer with config values
+    optimizer = PortfolioOptimizer(
+        allow_shorts=allow_shorts,
+        min_weight=config['black_litterman']['min_weight'],
+        max_weight=config['black_litterman']['max_weight']
+    )
+    optimizer.set_hyperparameters(
+        risk_aversion=config['black_litterman']['risk_aversion'],
+        tau_for_covariance=config['black_litterman']['tau_for_covariance'],
+        tau_omega=config['black_litterman']['tau_omega'],
+        relative_confidence=config['black_litterman']['relative_confidence']
+    )
+    
+    backtester = Backtester(initial_capital=initial_capital)
     visualizer = Visualizer()
     report_gen = ReportGenerator()
     
@@ -77,7 +100,7 @@ def main():
     
     portfolio_results = []
     
-    for quarter in args.quarters:
+    for quarter in quarters:
         print(f"\n{'#'*80}")
         print(f"# QUARTER: {quarter}")
         print(f"{'#'*80}")
@@ -93,7 +116,11 @@ def main():
             
             # 3. Optimize portfolio
             print(f"\nStep 3/4: Optimizing portfolio...")
-            portfolio = optimizer.optimize_quarter(quarter_data, llm_views)
+            portfolio = optimizer.optimize_quarter(
+                quarter_data, 
+                llm_views,
+                lookback_days=config['data']['lookback_days']
+            )
             portfolio_results.append(portfolio)
             
             # 4. Save results
@@ -112,7 +139,7 @@ def main():
         print("\n✗ No quarters were successfully processed. Exiting.")
         return
     
-    print(f"\n✓ Successfully processed {len(portfolio_results)}/{len(args.quarters)} quarters")
+    print(f"\n✓ Successfully processed {len(portfolio_results)}/{len(quarters)} quarters")
     
     # Backtesting
     print("\n" + "="*80)

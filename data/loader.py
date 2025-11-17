@@ -7,18 +7,48 @@ import pandas as pd
 import numpy as np
 import json
 import os
+from pathlib import Path
 from datetime import datetime
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Optional
 import PyPDF2
 import re
+
+# Import config loader
+try:
+    from config_loader import get_config, get_project_root
+except ImportError:
+    # Fallback if config_loader not available
+    def get_project_root():
+        return Path(__file__).resolve().parents[1]
+    def get_config():
+        return {'project_root': str(get_project_root())}
 
 
 class DataLoader:
     """Unified data loader for all project data sources"""
     
-    def __init__(self, base_path="/Users/elijahbellamy/Desktop/GT/AY25-2/MGT 6078/project"):
-        self.base_path = base_path
-        self.tickers = ['XLK', 'XLY', 'ITA', 'XLE', 'XLV', 'XLF']
+    def __init__(self, base_path: Optional[str] = None):
+        """
+        Initialize DataLoader
+        
+        Args:
+            base_path: Optional base path. If None, uses project root from config or derives from file location.
+        """
+        if base_path is None:
+            config = get_config()
+            self.base_path = config.get('project_root', str(get_project_root()))
+        else:
+            self.base_path = base_path
+        
+        # Ensure base_path is absolute
+        self.base_path = str(Path(self.base_path).resolve())
+        
+        # Load tickers from config
+        try:
+            config = get_config()
+            self.tickers = config.get('portfolio', {}).get('tickers', ['XLK', 'XLY', 'ITA', 'XLE', 'XLV', 'XLF'])
+        except Exception:
+            self.tickers = ['XLK', 'XLY', 'ITA', 'XLE', 'XLV', 'XLF']
         
         # Define quarter date ranges
         self.quarter_dates = {

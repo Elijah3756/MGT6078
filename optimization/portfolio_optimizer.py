@@ -154,6 +154,7 @@ class PortfolioOptimizer:
     def _validate_views(self, llm_views: Dict) -> None:
         """
         Validate LLM views before optimization
+        Supports both absolute and relative views
         
         Args:
             llm_views: Dictionary with LLM-generated views
@@ -168,32 +169,79 @@ class PortfolioOptimizer:
         if not isinstance(views, list) or len(views) == 0:
             raise ValueError("views must be a non-empty list")
         
-        # Check all tickers are covered
-        view_tickers = {view['ticker'] for view in views if 'ticker' in view}
-        missing_tickers = set(self.tickers) - view_tickers
-        if missing_tickers:
-            logger.warning(f"Missing views for tickers: {missing_tickers}")
+        # Collect tickers mentioned in views (for coverage check)
+        view_tickers = set()
         
         # Validate each view
         for i, view in enumerate(views):
-            if 'ticker' not in view:
-                raise ValueError(f"View {i} missing 'ticker' field")
-            if view['ticker'] not in self.tickers:
-                raise ValueError(f"View {i} has unknown ticker: {view['ticker']}")
-            if 'expected_return' not in view:
-                raise ValueError(f"View {i} missing 'expected_return' field")
-            if not isinstance(view['expected_return'], (int, float)):
-                raise ValueError(f"View {i} expected_return must be numeric")
-            if abs(view['expected_return']) > 1.0:
-                logger.warning(
-                    f"View {i} has extreme expected_return: {view['expected_return']:.2%} "
-                    "(expected returns should typically be between -50% and +50%)"
-                )
+            view_type = view.get('type', 'absolute')  # Default to absolute for backward compatibility
+            
+            if view_type == 'relative':
+                # Validate relative view
+                if 'ticker1' not in view:
+                    raise ValueError(f"Relative view {i} missing 'ticker1' field")
+                if 'ticker2' not in view:
+                    raise ValueError(f"Relative view {i} missing 'ticker2' field")
+                if 'expected_outperformance' not in view:
+                    raise ValueError(f"Relative view {i} missing 'expected_outperformance' field")
+                
+                ticker1 = view['ticker1']
+                ticker2 = view['ticker2']
+                
+                if ticker1 not in self.tickers:
+                    raise ValueError(f"Relative view {i} has unknown ticker1: {ticker1}")
+                if ticker2 not in self.tickers:
+                    raise ValueError(f"Relative view {i} has unknown ticker2: {ticker2}")
+                if ticker1 == ticker2:
+                    raise ValueError(f"Relative view {i} has identical ticker1 and ticker2: {ticker1}")
+                
+                expected_outperformance = view['expected_outperformance']
+                if not isinstance(expected_outperformance, (int, float)):
+                    raise ValueError(f"Relative view {i} expected_outperformance must be numeric")
+                if abs(expected_outperformance) > 1.0:
+                    logger.warning(
+                        f"Relative view {i} has extreme expected_outperformance: {expected_outperformance:.2%} "
+                        "(expected outperformance should typically be between -50% and +50%)"
+                    )
+                
+                view_tickers.add(ticker1)
+                view_tickers.add(ticker2)
+                
+            else:
+                # Validate absolute view
+                if 'ticker' not in view:
+                    raise ValueError(f"Absolute view {i} missing 'ticker' field")
+                if 'expected_return' not in view:
+                    raise ValueError(f"Absolute view {i} missing 'expected_return' field")
+                
+                ticker = view['ticker']
+                if ticker not in self.tickers:
+                    raise ValueError(f"Absolute view {i} has unknown ticker: {ticker}")
+                
+                expected_return = view['expected_return']
+                if not isinstance(expected_return, (int, float)):
+                    raise ValueError(f"Absolute view {i} expected_return must be numeric")
+                if abs(expected_return) > 1.0:
+                    logger.warning(
+                        f"Absolute view {i} has extreme expected_return: {expected_return:.2%} "
+                        "(expected returns should typically be between -50% and +50%)"
+                    )
+                
+                view_tickers.add(ticker)
+            
+            # Validate confidence (common to both view types)
             if 'confidence' not in view:
                 raise ValueError(f"View {i} missing 'confidence' field")
             confidence = view['confidence']
+            if not isinstance(confidence, (int, float)):
+                raise ValueError(f"View {i} confidence must be numeric")
             if not (0 <= confidence <= 100):
                 raise ValueError(f"View {i} confidence must be between 0 and 100, got {confidence}")
+        
+        # Warn if not all tickers are covered (but don't fail - relative views may not cover all)
+        missing_tickers = set(self.tickers) - view_tickers
+        if missing_tickers:
+            logger.warning(f"Missing views for tickers: {missing_tickers} (this is OK for relative views)")
     
     def _optimize_with_constraints(self, bl: BlackLitterman, 
                                    initial_weights: np.ndarray) -> Tuple[np.ndarray, float, Dict]:
