@@ -38,7 +38,8 @@ class BlackLitterman:
                                 P_matrix,
                                 Q_vector,
                                 tau_omega,
-                                relative_confidence):
+                                relative_confidence,
+                                Omega_matrix=None):
         # 1. Load data & set parameters
         bl_data = self._load_data()
         self._set_hyperparameters(
@@ -53,7 +54,9 @@ class BlackLitterman:
         self._compute_prior_from_market(bl_data)
 
         # 3. Set up views (P, Q, Omega, prior precision of views)
-        self._setup_views(P_matrix, Q_vector)
+        # If Omega_matrix is provided (from LLM confidences), use it; otherwise compute default
+        self._setup_views(P_matrix, Q_vector, Omega_matrix=Omega_matrix, 
+                         relative_confidence=relative_confidence)
 
         # 4. Compute posterior returns & covariance
         self._compute_posterior()
@@ -107,15 +110,21 @@ class BlackLitterman:
         self.market_exp_excess_return = self.risk_aversion * self.market_variance
         self.std_dev = math.sqrt(self.market_variance)
 
-    def _setup_views(self, P_matrix, Q_vector):
+    def _setup_views(self, P_matrix, Q_vector, Omega_matrix=None, relative_confidence=1.0):
         self.P_matrix = P_matrix
         self.Q_vector = Q_vector
 
-        # Omega matrix based on scaling with tau_omega
-        self.Omega_matrix = self.tau_omega * np.matmul(
-            self.P_matrix,
-            np.matmul(self.cov_matrix_prior, self.P_matrix.T)
-        )
+        # If Omega_matrix is provided (from LLM confidences), use it
+        # Otherwise, compute default Omega based on tau_omega scaling
+        if Omega_matrix is not None:
+            # Use provided Omega, scaled by relative_confidence
+            self.Omega_matrix = Omega_matrix * relative_confidence
+        else:
+            # Default: Omega matrix based on scaling with tau_omega
+            self.Omega_matrix = self.tau_omega * np.matmul(
+                self.P_matrix,
+                np.matmul(self.cov_matrix_prior, self.P_matrix.T)
+            ) * relative_confidence
 
         # Prior precision of views
         self.prior_precision_of_views = np.matmul(

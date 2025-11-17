@@ -54,6 +54,60 @@ class StockProcessor:
         
         return returns_df
     
+    def calculate_returns_up_to_date(self, stock_data: Dict[str, pd.DataFrame],
+                                     end_date: str,
+                                     lookback_days: int = 252) -> pd.DataFrame:
+        """
+        Calculate daily returns for all ETFs up to a specific end date
+        
+        Args:
+            stock_data: Dictionary mapping ticker to price DataFrame
+            end_date: End date in YYYY-MM-DD format (only use data up to this date)
+            lookback_days: Number of days of historical data to use
+            
+        Returns:
+            DataFrame with returns for each ticker
+        """
+        import pandas as pd
+        
+        end_date_pd = pd.to_datetime(end_date)
+        returns_dict = {}
+        
+        for ticker in self.tickers:
+            if ticker in stock_data:
+                df = stock_data[ticker].copy()
+                df = df.sort_values('Date')
+                
+                # Filter to dates up to and including end_date
+                df = df[df['Date'] <= end_date_pd]
+                
+                if len(df) == 0:
+                    print(f"Warning: No data for {ticker} up to {end_date}")
+                    continue
+                
+                # Calculate daily returns
+                df['Return'] = df['Close'].pct_change()
+                
+                # Take last N days (or all available if less)
+                df = df.tail(min(lookback_days, len(df)))
+                
+                returns_dict[ticker] = df['Return'].values
+        
+        if not returns_dict:
+            raise ValueError(f"No returns data available up to {end_date}")
+        
+        # Create DataFrame with aligned returns
+        min_length = min(len(v) for v in returns_dict.values())
+        
+        aligned_returns = {}
+        for ticker, returns in returns_dict.items():
+            aligned_returns[ticker] = returns[-min_length:]
+        
+        returns_df = pd.DataFrame(aligned_returns)
+        returns_df = returns_df.dropna()
+        
+        return returns_df
+    
     def save_returns_csv(self, returns_df: pd.DataFrame, output_path: str):
         """
         Save returns data as CSV for Black-Litterman model

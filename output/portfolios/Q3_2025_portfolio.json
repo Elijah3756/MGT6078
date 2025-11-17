@@ -1,0 +1,68 @@
+{
+  "quarter": "Q3_2025",
+  "weights": [
+    0.1666376382733391,
+    0.16653850177923835,
+    0.16684071176374926,
+    0.1667383035334451,
+    0.16659988990674368,
+    0.1666449547434845
+  ],
+  "sharpe": 0.03560898242620789,
+  "ticker_weights": {
+    "XLK": 0.1666376382733391,
+    "XLY": 0.16653850177923835,
+    "ITA": 0.16684071176374926,
+    "XLE": 0.1667383035334451,
+    "XLV": 0.16659988990674368,
+    "XLF": 0.1666449547434845
+  },
+  "views_used": {
+    "quarter": "Q3_2025",
+    "views": [
+      {
+        "ticker": "XLK",
+        "expected_return": 0.0801,
+        "confidence": 40,
+        "reasoning": "Strong momentum from previous quarter (+12.3%). Expecting continued but moderated growth."
+      },
+      {
+        "ticker": "XLY",
+        "expected_return": 0.0182,
+        "confidence": 40,
+        "reasoning": "Strong momentum from previous quarter (+9.8%). Expecting continued but moderated growth."
+      },
+      {
+        "ticker": "ITA",
+        "expected_return": 0.0706,
+        "confidence": 40,
+        "reasoning": "Strong momentum from previous quarter (+6.1%). Expecting continued but moderated growth."
+      },
+      {
+        "ticker": "XLE",
+        "expected_return": 0.0846,
+        "confidence": 40,
+        "reasoning": "Stable performance expected based on historical patterns and current market conditions."
+      },
+      {
+        "ticker": "XLV",
+        "expected_return": 0.0425,
+        "confidence": 40,
+        "reasoning": "Stable performance expected based on historical patterns and current market conditions."
+      },
+      {
+        "ticker": "XLF",
+        "expected_return": 0.0824,
+        "confidence": 40,
+        "reasoning": "Stable performance expected based on historical patterns and current market conditions."
+      }
+    ],
+    "method": "simulated"
+  },
+  "hyperparameters": {
+    "risk_aversion": 2.5,
+    "tau_for_covariance": 0.025,
+    "tau_omega": 0.05,
+    "relative_confidence": 1.0
+  }
+}

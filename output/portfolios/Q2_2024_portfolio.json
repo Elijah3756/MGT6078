@@ -1,0 +1,68 @@
+{
+  "quarter": "Q2_2024",
+  "weights": [
+    0.16692046169191677,
+    0.1666257712058722,
+    0.1665648540947584,
+    0.16660872520878922,
+    0.16669186507351685,
+    0.1665883227251468
+  ],
+  "sharpe": 0.01917264548489687,
+  "ticker_weights": {
+    "XLK": 0.16692046169191677,
+    "XLY": 0.1666257712058722,
+    "ITA": 0.1665648540947584,
+    "XLE": 0.16660872520878922,
+    "XLV": 0.16669186507351685,
+    "XLF": 0.1665883227251468
+  },
+  "views_used": {
+    "quarter": "Q2_2024",
+    "views": [
+      {
+        "ticker": "XLK",
+        "expected_return": 0.1211,
+        "confidence": 40,
+        "reasoning": "Strong momentum from previous quarter (+8.3%). Expecting continued but moderated growth."
+      },
+      {
+        "ticker": "XLY",
+        "expected_return": -0.0045,
+        "confidence": 40,
+        "reasoning": "Stable performance expected based on historical patterns and current market conditions."
+      },
+      {
+        "ticker": "ITA",
+        "expected_return": 0.0121,
+        "confidence": 40,
+        "reasoning": "Stable performance expected based on historical patterns and current market conditions."
+      },
+      {
+        "ticker": "XLE",
+        "expected_return": 0.055,
+        "confidence": 40,
+        "reasoning": "Stable performance expected based on historical patterns and current market conditions."
+      },
+      {
+        "ticker": "XLV",
+        "expected_return": 0.0865,
+        "confidence": 40,
+        "reasoning": "Stable performance expected based on historical patterns and current market conditions."
+      },
+      {
+        "ticker": "XLF",
+        "expected_return": 0.0026,
+        "confidence": 40,
+        "reasoning": "Stable performance expected based on historical patterns and current market conditions."
+      }
+    ],
+    "method": "simulated"
+  },
+  "hyperparameters": {
+    "risk_aversion": 2.5,
+    "tau_for_covariance": 0.025,
+    "tau_omega": 0.05,
+    "relative_confidence": 1.0
+  }
+}

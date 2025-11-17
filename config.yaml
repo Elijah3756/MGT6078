@@ -1,0 +1,73 @@
+# LLM-Powered Black-Litterman Portfolio Optimization Configuration
+
+# LLM Settings
+llm:
+  model_type: "simulated"  # Options: simulated, finance-llm, anthropic, openai
+  # For API-based models, set environment variables:
+  # - ANTHROPIC_API_KEY for Claude
+  # - OPENAI_API_KEY for GPT-4
+
+# Portfolio Settings
+portfolio:
+  tickers:
+    - XLK  # Technology
+    - XLY  # Consumer Discretionary
+    - ITA  # Aerospace & Defense
+    - XLE  # Energy
+    - XLV  # Healthcare
+    - XLF  # Financials
+  
+  initial_capital: 100000
+
+# Black-Litterman Hyperparameters
+black_litterman:
+  risk_aversion: 2.5  # Risk aversion coefficient (2-4 typical)
+  tau_for_covariance: 0.025  # Uncertainty in prior (0.025-0.1)
+  tau_omega: 0.05  # Uncertainty in views (0.025-0.1)
+  relative_confidence: 1.0  # Relative confidence in views (0.5-1.0)
+  
+  # Optimization constraints
+  allow_shorts: true  # Allow short positions (default: true)
+  # When allow_shorts=true: bounds are (-100%, +200%) per asset
+  # When allow_shorts=false: bounds are (0%, +100%) per asset (long-only)
+  min_weight: -1.0  # Minimum weight per asset (for shorts)
+  max_weight: 2.0   # Maximum weight per asset (for leveraged longs)
+
+# Data Settings
+data:
+  lookback_days: 252  # Days of historical data for covariance (1 year trading days)
+  
+  # Quarter definitions
+  quarters:
+    - Q1_2024
+    - Q2_2024
+    - Q3_2024
+    - Q4_2024
+    - Q1_2025
+    - Q2_2025
+    - Q3_2025
+
+# Output Settings
+output:
+  charts: true  # Generate visualization charts
+  reports: true  # Generate text reports
+  json: true  # Save JSON results
+  
+  directories:
+    portfolios: "output/portfolios"
+    views: "output/views"
+    charts: "output/charts"
+    reports: "output/reports"
+    llm_responses: "output/llm_responses"
+
+# Performance Settings
+performance:
+  risk_free_rate: 0.02  # Annual risk-free rate (2%)
+  var_confidence: 0.95  # Value at Risk confidence level
+
+# Reporting Settings
+reporting:
+  include_methodology: true
+  include_quarterly_breakdown: true
+  include_allocation_history: true
+

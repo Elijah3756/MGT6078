@@ -1,0 +1,42 @@
+{
+  "quarter": "Q2_2025",
+  "views": [
+    {
+      "ticker": "XLK",
+      "expected_return": 0.1094,
+      "confidence": 40,
+      "reasoning": "Strong momentum from previous quarter (+21.8%). Expecting continued but moderated growth."
+    },
+    {
+      "ticker": "XLY",
+      "expected_return": 0.0929,
+      "confidence": 40,
+      "reasoning": "Strong momentum from previous quarter (+8.9%). Expecting continued but moderated growth."
+    },
+    {
+      "ticker": "ITA",
+      "expected_return": 0.13,
+      "confidence": 40,
+      "reasoning": "Strong momentum from previous quarter (+22.3%). Expecting continued but moderated growth."
+    },
+    {
+      "ticker": "XLE",
+      "expected_return": -0.0456,
+      "confidence": 40,
+      "reasoning": "Recovery expected after previous decline (-9.8%). Mean reversion likely."
+    },
+    {
+      "ticker": "XLV",
+      "expected_return": 0.0033,
+      "confidence": 40,
+      "reasoning": "Recovery expected after previous decline (-6.0%). Mean reversion likely."
+    },
+    {
+      "ticker": "XLF",
+      "expected_return": 0.0103,
+      "confidence": 40,
+      "reasoning": "Strong momentum from previous quarter (+5.3%). Expecting continued but moderated growth."
+    }
+  ],
+  "method": "simulated"
+}
