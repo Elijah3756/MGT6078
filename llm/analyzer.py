@@ -33,18 +33,53 @@ class LLMAnalyzer:
         self.parser = ViewsParser()
         self.finance_model = None
         self.finance_tokenizer = None
+        self._model_load_attempted = False
+        self._model_load_failed = False
         
-        # Always try to load finance-LLM model (unless explicitly simulated)
+        # Check if dependencies are available (but don't load model yet)
         if model_type == "finance-llm":
-            self._load_finance_llm()
+            self._check_dependencies()
+    
+    def _check_dependencies(self):
+        """Check if required dependencies are available without loading the model"""
+        try:
+            import transformers
+            import torch
+            self._dependencies_available = True
+        except ImportError:
+            print("Warning: transformers or torch not available. Finance-LLM model cannot be used.")
+            print("Falling back to simulated mode")
+            self._dependencies_available = False
+            self.model_type = "simulated"
+            self._model_load_failed = True
     
     def _load_finance_llm(self):
-        """Load the AdaptLLM/finance-LLM model"""
+        """Lazy load the AdaptLLM/finance-LLM model (only when actually needed)"""
+        # Don't attempt if already tried and failed
+        if self._model_load_failed:
+            return False
+        
+        # Don't attempt if dependencies not available
+        if not self._dependencies_available:
+            return False
+        
+        # Don't reload if already loaded
+        if self.finance_model is not None and self.finance_tokenizer is not None:
+            return True
+        
+        # Mark that we're attempting to load
+        if self._model_load_attempted:
+            return False  # Already attempted, don't retry
+        
+        self._model_load_attempted = True
+        
         try:
             from transformers import AutoTokenizer, AutoModelForCausalLM
             import torch
             
-            print("Loading AdaptLLM/finance-LLM model...")
+            print("Loading AdaptLLM/finance-LLM model (lazy loading)...")
+            print("  This may take a few minutes on first use (~7GB download)...")
+            
             self.finance_tokenizer = AutoTokenizer.from_pretrained("AdaptLLM/finance-LLM")
             self.finance_model = AutoModelForCausalLM.from_pretrained("AdaptLLM/finance-LLM")
             
@@ -53,13 +88,29 @@ class LLMAnalyzer:
                 self.finance_model = self.finance_model.cuda()
                 print("  Model loaded on GPU")
             else:
-                print("  Model loaded on CPU")
+                print("  Model loaded on CPU (slower)")
             
             print("✓ Finance-LLM model loaded successfully")
+            return True
+            
+        except ImportError as e:
+            print(f"Error: Required dependencies not available: {e}")
+            print("Install with: pip install transformers torch")
+            print("Falling back to simulated mode")
+            self._model_load_failed = True
+            self.model_type = "simulated"
+            return False
+            
         except Exception as e:
             print(f"Error loading finance-LLM model: {e}")
+            print("This may be due to:")
+            print("  - Insufficient memory/VRAM")
+            print("  - Network issues downloading the model")
+            print("  - Missing dependencies")
             print("Falling back to simulated mode")
+            self._model_load_failed = True
             self.model_type = "simulated"
+            return False
     
     def generate_views_finance_llm(self, quarter_data: Dict) -> Optional[Dict]:
         """
@@ -71,9 +122,10 @@ class LLMAnalyzer:
         Returns:
             Views dictionary or None if failed
         """
+        # Lazy load the model only when actually needed
         if self.finance_model is None or self.finance_tokenizer is None:
-            print("Finance-LLM model not loaded")
-            return None
+            if not self._load_finance_llm():
+                return None  # Model loading failed, fallback will be used
         
         try:
             import torch

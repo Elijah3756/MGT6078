@@ -4,7 +4,15 @@ Calculate additional performance metrics for portfolio analysis
 """
 
 import numpy as np
-from typing import Dict, List
+from typing import Dict, List, Optional
+
+# Import config loader
+try:
+    from config_loader import get_config
+except ImportError:
+    # Fallback if config_loader not available
+    def get_config():
+        return {'performance': {'risk_free_rate': 0.02}}
 
 
 class PerformanceMetrics:
@@ -18,17 +26,21 @@ class PerformanceMetrics:
         return (final_value / initial_value) ** (1 / years) - 1
     
     @staticmethod
-    def calculate_sortino_ratio(returns: np.ndarray, risk_free_rate: float = 0.02) -> float:
+    def calculate_sortino_ratio(returns: np.ndarray, risk_free_rate: Optional[float] = None) -> float:
         """
         Calculate Sortino ratio (downside deviation)
         
         Args:
             returns: Array of periodic returns
-            risk_free_rate: Annual risk-free rate
+            risk_free_rate: Annual risk-free rate (if None, uses config.yaml)
             
         Returns:
             Sortino ratio
         """
+        # Get risk-free rate from config if not provided
+        if risk_free_rate is None:
+            config = get_config()
+            risk_free_rate = config.get('performance', {}).get('risk_free_rate', 0.02)
         quarterly_rf = risk_free_rate / 4
         excess_returns = returns - quarterly_rf
         

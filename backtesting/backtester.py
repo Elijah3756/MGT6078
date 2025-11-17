@@ -5,22 +5,38 @@ Simulate portfolio performance with quarterly rebalancing
 
 import numpy as np
 import pandas as pd
-from typing import List, Dict
+from typing import List, Dict, Optional
 from datetime import datetime
+
+# Import config loader
+try:
+    from config_loader import get_config
+except ImportError:
+    # Fallback if config_loader not available
+    def get_config():
+        return {'performance': {'risk_free_rate': 0.02}}
 
 
 class Backtester:
     """Backtest portfolio strategy with quarterly rebalancing"""
     
-    def __init__(self, initial_capital: float = 100000):
+    def __init__(self, initial_capital: float = 100000, risk_free_rate: Optional[float] = None):
         """
         Initialize backtester
         
         Args:
             initial_capital: Starting portfolio value
+            risk_free_rate: Annual risk-free rate (if None, uses config.yaml)
         """
         self.initial_capital = initial_capital
         self.tickers = ['XLK', 'XLY', 'ITA', 'XLE', 'XLV', 'XLF']
+        
+        # Get risk-free rate from config if not provided
+        if risk_free_rate is None:
+            config = get_config()
+            self.risk_free_rate = config.get('performance', {}).get('risk_free_rate', 0.02)
+        else:
+            self.risk_free_rate = risk_free_rate
     
     def get_quarterly_returns(self, stock_data: Dict[str, pd.DataFrame],
                               quarter_dates: tuple) -> Dict[str, float]:
@@ -142,9 +158,8 @@ class Backtester:
         # Volatility (annualized)
         volatility = np.std(quarterly_returns) * np.sqrt(4)
         
-        # Sharpe ratio (assuming 2% risk-free rate)
-        risk_free_rate = 0.02
-        sharpe_ratio = (annualized_return - risk_free_rate) / volatility if volatility > 0 else 0
+        # Sharpe ratio (using configurable risk-free rate)
+        sharpe_ratio = (annualized_return - self.risk_free_rate) / volatility if volatility > 0 else 0
         
         # Maximum drawdown
         values = [self.initial_capital] + [h['end_value'] for h in history]
@@ -232,8 +247,8 @@ class Backtester:
         quarterly_returns = np.array([h['return'] for h in history])
         volatility = np.std(quarterly_returns) * np.sqrt(4)
         
-        risk_free_rate = 0.02
-        sharpe_ratio = (annualized_return - risk_free_rate) / volatility if volatility > 0 else 0
+        # Sharpe ratio (using configurable risk-free rate)
+        sharpe_ratio = (annualized_return - self.risk_free_rate) / volatility if volatility > 0 else 0
         
         values = [self.initial_capital] + [h['end_value'] for h in history]
         peak = np.maximum.accumulate(values)
