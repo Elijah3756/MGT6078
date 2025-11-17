@@ -72,6 +72,13 @@ ls -lh output/portfolios/
 open output/charts/cumulative_returns.png
 ```
 
+### Workflow Diagrams
+```bash
+# View system workflow diagrams
+open output/workflow_diagram.png
+open output/workflow_diagram_detailed.png
+```
+
 ## Run Options
 
 ### Use Different LLM
@@ -167,7 +174,8 @@ All with a single command!
 2. Examine quarterly allocations: `output/portfolios/`
 3. Check LLM views: `output/views/`
 4. View charts: `output/charts/` (if not skipped)
-5. Read the methodology: `README.md`
+5. Review workflow diagrams: `output/workflow_diagram.png` and `output/workflow_diagram_detailed.png`
+6. Read the methodology: `README.md`
 
 ## Academic Use
 

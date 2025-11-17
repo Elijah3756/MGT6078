@@ -13,6 +13,28 @@ This system combines:
 
 ## Architecture
 
+### System Workflow
+
+The complete system workflow is visualized in the following diagrams:
+
+![Workflow Diagram](output/workflow_diagram.png)
+
+**High-Level Overview** (`output/workflow_diagram.png`):
+- Shows the complete data flow from inputs through processing to outputs
+- Includes hyperparameter optimization loop
+- Color-coded by component type (inputs, processes, outputs)
+
+![Detailed Workflow Diagram](output/workflow_diagram_detailed.png)
+
+**Detailed Component View** (`output/workflow_diagram_detailed.png`):
+- Component-level process flow with sub-processes
+- Shows internal processing details for each major step
+- Includes method calls and data transformations
+
+For more information about generating and customizing these diagrams, see [WORKFLOW_DIAGRAM_README.md](WORKFLOW_DIAGRAM_README.md).
+
+### Text Flow
+
 ```
 Data Sources → Data Pipeline → LLM Analysis → Views Matrix → Black-Litterman → Portfolio → Backtesting → Reports
 ```
@@ -123,6 +145,8 @@ After running the pipeline, find results in:
 - `output/views/`: LLM-generated investment views (JSON)
 - `output/charts/`: Performance visualizations (PNG)
 - `output/reports/`: Full analysis report (TXT, JSON)
+- `output/workflow_diagram.png`: System workflow diagram (high-level)
+- `output/workflow_diagram_detailed.png`: Detailed component workflow diagram
 
 ## Key Files
 

@@ -1,0 +1,67 @@
+graph TD
+    %% Inputs
+    Config[config.yaml<br/>Configuration]
+    StockData[Stock Data<br/>Price History]
+    PoliticalNews[Political News<br/>GDELT API]
+    Bloomberg[Bloomberg<br/>Headlines]
+    FOMC[FOMC PDFs<br/>Federal Reserve]
+    Research[Investor Research<br/>Quarterly Reports]
+    
+    %% Processing Pipeline
+    DataLoader[DataLoader<br/>Load & Format<br/>Quarterly Data]
+    LLMAnalyzer[LLMAnalyzer<br/>Generate Views<br/>from Data]
+    ViewsConverter[ViewsConverter<br/>Convert to<br/>BL Format]
+    PortfolioOptimizer[PortfolioOptimizer<br/>Black-Litterman<br/>Optimization]
+    Backtester[Backtester<br/>Simulate Performance<br/>Quarter by Quarter]
+    PerformanceMetrics[PerformanceMetrics<br/>Calculate Risk/Return<br/>Metrics]
+    
+    %% Outputs
+    PortfolioJSON[Portfolio<br/>Allocations<br/>JSON]
+    ViewsJSON[LLM Views<br/>JSON]
+    Charts[Performance<br/>Charts<br/>PNG]
+    ResultsJSON[Backtest<br/>Results<br/>JSON]
+    Report[Full Report<br/>TXT, JSON]
+    MetricsSummary[Metrics<br/>Summary]
+    
+    %% Optional Optimization
+    HyperOpt[HyperparameterOptimizer<br/>Grid/Random/ML Search]
+    
+    %% Inputs to DataLoader
+    Config --> DataLoader
+    StockData --> DataLoader
+    PoliticalNews --> DataLoader
+    Bloomberg --> DataLoader
+    FOMC --> DataLoader
+    Research --> DataLoader
+    
+    %% Processing Flow
+    DataLoader --> LLMAnalyzer
+    LLMAnalyzer --> ViewsConverter
+    ViewsConverter --> PortfolioOptimizer
+    PortfolioOptimizer --> Backtester
+    Backtester --> PerformanceMetrics
+    
+    %% Outputs
+    DataLoader --> PortfolioJSON
+    LLMAnalyzer --> ViewsJSON
+    PortfolioOptimizer --> PortfolioJSON
+    Backtester --> Charts
+    Backtester --> ResultsJSON
+    Backtester --> Report
+    PerformanceMetrics --> MetricsSummary
+    
+    %% Hyperparameter Optimization
+    HyperOpt -.-> Config
+    HyperOpt -.-> PortfolioOptimizer
+    
+    %% Styling
+    classDef inputStyle fill:#E3F2FD,stroke:#1976D2,stroke-width:2px
+    classDef processStyle fill:#FFF3E0,stroke:#F57C00,stroke-width:2px
+    classDef outputStyle fill:#E8F5E9,stroke:#388E3C,stroke-width:2px
+    classDef optStyle fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px
+    
+    class Config,StockData,PoliticalNews,Bloomberg,FOMC,Research inputStyle
+    class DataLoader,LLMAnalyzer,ViewsConverter,PortfolioOptimizer,Backtester,PerformanceMetrics processStyle
+    class PortfolioJSON,ViewsJSON,Charts,ResultsJSON,Report,MetricsSummary outputStyle
+    class HyperOpt optStyle
+

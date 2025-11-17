@@ -1,0 +1,60 @@
+digraph Workflow {
+    rankdir=TB;
+    node [shape=box, style=rounded];
+    
+    // Inputs
+    Config [label="config.yaml\nConfiguration", fillcolor="#E3F2FD", style="rounded,filled", color="#1976D2", penwidth=2];
+    StockData [label="Stock Data\nPrice History", fillcolor="#E3F2FD", style="rounded,filled", color="#1976D2", penwidth=2];
+    PoliticalNews [label="Political News\nGDELT API", fillcolor="#E3F2FD", style="rounded,filled", color="#1976D2", penwidth=2];
+    Bloomberg [label="Bloomberg\nHeadlines", fillcolor="#E3F2FD", style="rounded,filled", color="#1976D2", penwidth=2];
+    FOMC [label="FOMC PDFs\nFederal Reserve", fillcolor="#E3F2FD", style="rounded,filled", color="#1976D2", penwidth=2];
+    Research [label="Investor Research\nQuarterly Reports", fillcolor="#E3F2FD", style="rounded,filled", color="#1976D2", penwidth=2];
+    
+    // Processing Pipeline
+    DataLoader [label="DataLoader\nLoad & Format\nQuarterly Data", fillcolor="#FFF3E0", style="rounded,filled", color="#F57C00", penwidth=2];
+    LLMAnalyzer [label="LLMAnalyzer\nGenerate Views\nfrom Data", fillcolor="#FFF3E0", style="rounded,filled", color="#F57C00", penwidth=2];
+    ViewsConverter [label="ViewsConverter\nConvert to\nBL Format", fillcolor="#FFF3E0", style="rounded,filled", color="#F57C00", penwidth=2];
+    PortfolioOptimizer [label="PortfolioOptimizer\nBlack-Litterman\nOptimization", fillcolor="#FFF3E0", style="rounded,filled", color="#F57C00", penwidth=2];
+    Backtester [label="Backtester\nSimulate Performance\nQuarter by Quarter", fillcolor="#FFF3E0", style="rounded,filled", color="#F57C00", penwidth=2];
+    PerformanceMetrics [label="PerformanceMetrics\nCalculate Risk/Return\nMetrics", fillcolor="#FFF3E0", style="rounded,filled", color="#F57C00", penwidth=2];
+    
+    // Outputs
+    PortfolioJSON [label="Portfolio\nAllocations\nJSON", fillcolor="#E8F5E9", style="rounded,filled", color="#388E3C", penwidth=2];
+    ViewsJSON [label="LLM Views\nJSON", fillcolor="#E8F5E9", style="rounded,filled", color="#388E3C", penwidth=2];
+    Charts [label="Performance\nCharts\nPNG", fillcolor="#E8F5E9", style="rounded,filled", color="#388E3C", penwidth=2];
+    ResultsJSON [label="Backtest\nResults\nJSON", fillcolor="#E8F5E9", style="rounded,filled", color="#388E3C", penwidth=2];
+    Report [label="Full Report\nTXT, JSON", fillcolor="#E8F5E9", style="rounded,filled", color="#388E3C", penwidth=2];
+    MetricsSummary [label="Metrics\nSummary", fillcolor="#E8F5E9", style="rounded,filled", color="#388E3C", penwidth=2];
+    
+    // Optional Optimization
+    HyperOpt [label="HyperparameterOptimizer\nGrid/Random/ML Search", fillcolor="#F3E5F5", style="rounded,filled", color="#7B1FA2", penwidth=2];
+    
+    // Inputs to DataLoader
+    Config -> DataLoader [color="#1976D2"];
+    StockData -> DataLoader [color="#1976D2"];
+    PoliticalNews -> DataLoader [color="#1976D2"];
+    Bloomberg -> DataLoader [color="#1976D2"];
+    FOMC -> DataLoader [color="#1976D2"];
+    Research -> DataLoader [color="#1976D2"];
+    
+    // Processing Flow
+    DataLoader -> LLMAnalyzer [color="#F57C00", penwidth=2];
+    LLMAnalyzer -> ViewsConverter [color="#F57C00", penwidth=2];
+    ViewsConverter -> PortfolioOptimizer [color="#F57C00", penwidth=2];
+    PortfolioOptimizer -> Backtester [color="#F57C00", penwidth=2];
+    Backtester -> PerformanceMetrics [color="#F57C00", penwidth=2];
+    
+    // Outputs
+    DataLoader -> PortfolioJSON [color="#388E3C"];
+    LLMAnalyzer -> ViewsJSON [color="#388E3C"];
+    PortfolioOptimizer -> PortfolioJSON [color="#388E3C"];
+    Backtester -> Charts [color="#388E3C"];
+    Backtester -> ResultsJSON [color="#388E3C"];
+    Backtester -> Report [color="#388E3C"];
+    PerformanceMetrics -> MetricsSummary [color="#388E3C"];
+    
+    // Hyperparameter Optimization (dashed lines)
+    HyperOpt -> Config [style=dashed, color="#7B1FA2"];
+    HyperOpt -> PortfolioOptimizer [style=dashed, color="#7B1FA2"];
+}
+

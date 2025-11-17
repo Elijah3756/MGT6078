@@ -41,6 +41,11 @@ class ReportGenerator:
         lines.append("="*80)
         lines.append(f"\nGenerated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         lines.append("")
+        lines.append("\nSystem Workflow Diagrams:")
+        lines.append("  - High-level overview: output/workflow_diagram.png")
+        lines.append("  - Detailed component view: output/workflow_diagram_detailed.png")
+        lines.append("  - See WORKFLOW_DIAGRAM_README.md for more information")
+        lines.append("")
         
         # Executive Summary
         lines.append("\n" + "="*80)
@@ -154,6 +159,15 @@ Sector ETFs:
   XLE - Energy
   XLV - Healthcare
   XLF - Financials
+
+System Workflow:
+  For a visual representation of the complete system workflow, see:
+  - output/workflow_diagram.png (high-level overview)
+  - output/workflow_diagram_detailed.png (detailed component view)
+  
+  These diagrams show the complete data flow from inputs through all
+  processing steps to final outputs, including the hyperparameter
+  optimization loop.
 """)
         
         # Conclusion
@@ -238,7 +252,12 @@ Areas for improvement:
             'strategy': convert_to_json_serializable(backtest_results),
             'benchmark': convert_to_json_serializable(benchmark_results),
             'metrics': convert_to_json_serializable(all_metrics),
-            'portfolios': convert_to_json_serializable(portfolio_results)
+            'portfolios': convert_to_json_serializable(portfolio_results),
+            'workflow_diagrams': {
+                'high_level': 'output/workflow_diagram.png',
+                'detailed': 'output/workflow_diagram_detailed.png',
+                'description': 'Visual representations of the system workflow showing data flow from inputs through processing to outputs'
+            }
         }
         
         output_path = os.path.join(self.output_dir, filename)

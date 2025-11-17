@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific
+*.log
+hyperopt_*.log
+
+# Large data files (optional - uncomment if you don't want to track these)
+# Finance and Investments Group Final Project/
+# political_news_data/
+
+# Output files (optional - uncomment if you don't want to track output)
+# output/portfolios/
+# output/views/
+# output/charts/
+# output/reports/
+# output/hyperparameter_optimization/
+
