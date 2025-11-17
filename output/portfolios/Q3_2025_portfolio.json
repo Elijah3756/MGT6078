@@ -1,58 +1,58 @@
 {
   "quarter": "Q3_2025",
   "weights": [
-    0.14397066507677844,
-    0.19748993143511093,
-    0.157794261838598,
-    0.18376155085323728,
-    0.15312485008523782,
-    0.16385874071103745
+    0.16043626353934332,
+    0.19194804059883225,
+    0.11366376905862843,
+    0.29438211647031315,
+    0.09809317907560466,
+    0.14147663125727836
   ],
-  "sharpe": 0.03108673854138675,
+  "sharpe": 0.06811342624303425,
   "ticker_weights": {
-    "XLK": 0.14397066507677844,
-    "XLY": 0.19748993143511093,
-    "ITA": 0.157794261838598,
-    "XLE": 0.18376155085323728,
-    "XLV": 0.15312485008523782,
-    "XLF": 0.16385874071103745
+    "XLK": 0.16043626353934332,
+    "XLY": 0.19194804059883225,
+    "ITA": 0.11366376905862843,
+    "XLE": 0.29438211647031315,
+    "XLV": 0.09809317907560466,
+    "XLF": 0.14147663125727836
   },
   "views_used": {
     "quarter": "Q3_2025",
     "views": [
       {
         "ticker": "XLK",
-        "expected_return": -0.0005,
+        "expected_return": 0.0423,
         "confidence": 40,
         "reasoning": "Strong momentum from previous quarter (+12.3%). Expecting continued but moderated growth."
       },
       {
         "ticker": "XLY",
-        "expected_return": 0.0728,
+        "expected_return": 0.0562,
         "confidence": 40,
         "reasoning": "Strong momentum from previous quarter (+9.8%). Expecting continued but moderated growth."
       },
       {
         "ticker": "ITA",
-        "expected_return": 0.0179,
+        "expected_return": 0.0213,
         "confidence": 40,
         "reasoning": "Strong momentum from previous quarter (+6.1%). Expecting continued but moderated growth."
       },
       {
         "ticker": "XLE",
-        "expected_return": 0.0541,
+        "expected_return": 0.1016,
         "confidence": 40,
         "reasoning": "Stable performance expected based on historical patterns and current market conditions."
       },
       {
         "ticker": "XLV",
-        "expected_return": 0.0111,
+        "expected_return": 0.0141,
         "confidence": 40,
         "reasoning": "Stable performance expected based on historical patterns and current market conditions."
       },
       {
         "ticker": "XLF",
-        "expected_return": 0.0245,
+        "expected_return": 0.0337,
         "confidence": 40,
         "reasoning": "Stable performance expected based on historical patterns and current market conditions."
       }
@@ -60,20 +60,20 @@
     "method": "simulated"
   },
   "hyperparameters": {
-    "risk_aversion": 2.5,
-    "tau_for_covariance": 0.025,
-    "tau_omega": 0.05,
-    "relative_confidence": 1.0
+    "risk_aversion": 2.243,
+    "tau_for_covariance": 0.08,
+    "tau_omega": 0.0901,
+    "relative_confidence": 0.532
   },
   "optimization_info": {
     "success": true,
     "message": "Optimization terminated successfully",
-    "iterations": 22,
+    "iterations": 25,
     "converged": true
   },
   "constraints": {
     "allow_shorts": true,
     "min_weight": -1.0,
-    "max_weight": 2.0
+    "max_weight": 1.17
   }
 }

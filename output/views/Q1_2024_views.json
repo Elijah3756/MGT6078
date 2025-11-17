@@ -3,37 +3,37 @@
   "views": [
     {
       "ticker": "XLK",
-      "expected_return": 0.0791,
+      "expected_return": 0.0408,
       "confidence": 40,
       "reasoning": "Strong momentum from previous quarter (+11.1%). Expecting continued but moderated growth."
     },
     {
       "ticker": "XLY",
-      "expected_return": -0.0128,
+      "expected_return": 0.0358,
       "confidence": 40,
       "reasoning": "Stable performance expected based on historical patterns and current market conditions."
     },
     {
       "ticker": "ITA",
-      "expected_return": 0.0153,
+      "expected_return": 0.0391,
       "confidence": 40,
       "reasoning": "Strong momentum from previous quarter (+5.2%). Expecting continued but moderated growth."
     },
     {
       "ticker": "XLE",
-      "expected_return": 0.0438,
+      "expected_return": 0.0374,
       "confidence": 40,
       "reasoning": "Strong momentum from previous quarter (+11.4%). Expecting continued but moderated growth."
     },
     {
       "ticker": "XLV",
-      "expected_return": 0.0515,
+      "expected_return": 0.0094,
       "confidence": 40,
       "reasoning": "Strong momentum from previous quarter (+6.4%). Expecting continued but moderated growth."
     },
     {
       "ticker": "XLF",
-      "expected_return": 0.1191,
+      "expected_return": 0.0436,
       "confidence": 40,
       "reasoning": "Strong momentum from previous quarter (+11.5%). Expecting continued but moderated growth."
     }

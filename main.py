@@ -72,7 +72,14 @@ def main():
     print("="*80)
     
     loader = DataLoader()
-    analyzer = LLMAnalyzer(model_type=llm_type)
+    
+    # Initialize analyzer with config values (temperature, top_p)
+    llm_config = config.get('llm', {})
+    analyzer = LLMAnalyzer(
+        model_type=llm_type,
+        temperature=llm_config.get('temperature', 0.7),
+        top_p=llm_config.get('top_p', 0.9)
+    )
     
     # Initialize optimizer with config values
     optimizer = PortfolioOptimizer(

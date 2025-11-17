@@ -1,0 +1,254 @@
+{
+  "total_trials": 30,
+  "valid_trials": 30,
+  "best_config": {
+    "llm_temperature": 0.6796789272997529,
+    "llm_top_p": 0.7618526656464572,
+    "risk_aversion": 2.2432627032072,
+    "tau_for_covariance": 0.0800097065007582,
+    "tau_omega": 0.09007745580662904,
+    "relative_confidence": 0.531621655347692,
+    "max_weight": 1.171960207446356,
+    "lookback_days": 177,
+    "allow_shorts": true
+  },
+  "best_metrics": {
+    "annualized_return": 0.3278691461466656,
+    "sharpe_ratio": 4.851910435619011,
+    "sortino_ratio": Infinity,
+    "max_drawdown": 0.0,
+    "outperformance": 0.16529054233735874
+  },
+  "top_configs": [
+    {
+      "config": {
+        "llm_temperature": 0.6796789272997529,
+        "llm_top_p": 0.7618526656464572,
+        "risk_aversion": 2.2432627032072,
+        "tau_for_covariance": 0.0800097065007582,
+        "tau_omega": 0.09007745580662904,
+        "relative_confidence": 0.531621655347692,
+        "max_weight": 1.171960207446356,
+        "lookback_days": 177,
+        "allow_shorts": true
+      },
+      "annualized_return": 0.3278691461466656,
+      "sharpe_ratio": 4.851910435619011,
+      "sortino_ratio": Infinity,
+      "max_drawdown": 0.0,
+      "outperformance": 0.16529054233735874,
+      "information_ratio": 2.956781270853734,
+      "total_return": 0.32786914614666574,
+      "volatility": 0.06345317998587238,
+      "win_rate": 1.0
+    },
+    {
+      "config": {
+        "llm_temperature": 0.48466490298055753,
+        "llm_top_p": 0.7598021748944069,
+        "risk_aversion": 2.328862384907935,
+        "tau_for_covariance": 0.07572875822459527,
+        "tau_omega": 0.08418632811632384,
+        "relative_confidence": 0.5088784242837203,
+        "max_weight": 1.0262384684241068,
+        "lookback_days": 238,
+        "allow_shorts": true
+      },
+      "annualized_return": 0.3238145711734346,
+      "sharpe_ratio": 4.806493587746178,
+      "sortino_ratio": Infinity,
+      "max_drawdown": 0.0,
+      "outperformance": 0.1612359673641277,
+      "information_ratio": 2.962340529169324,
+      "total_return": 0.32381457117343465,
+      "volatility": 0.06320919098862189,
+      "win_rate": 1.0
+    },
+    {
+      "config": {
+        "llm_temperature": 0.566699663136545,
+        "llm_top_p": 0.7469497507336635,
+        "risk_aversion": 2.2962481226434757,
+        "tau_for_covariance": 0.0781848084130944,
+        "tau_omega": 0.07554881951921409,
+        "relative_confidence": 0.581118729406158,
+        "max_weight": 1.1536827133042273,
+        "lookback_days": 179,
+        "allow_shorts": true
+      },
+      "annualized_return": 0.3165734990239708,
+      "sharpe_ratio": 4.721081213440351,
+      "sortino_ratio": Infinity,
+      "max_drawdown": 0.0,
+      "outperformance": 0.15399489521466392,
+      "information_ratio": 2.9618548885569633,
+      "total_return": 0.3165734990239708,
+      "volatility": 0.06281897845342327,
+      "win_rate": 1.0
+    },
+    {
+      "config": {
+        "llm_temperature": 0.3732229409068673,
+        "llm_top_p": 0.8237942275278175,
+        "risk_aversion": 1.5687770422304368,
+        "tau_for_covariance": 0.09183883618709039,
+        "tau_omega": 0.04440849862000128,
+        "relative_confidence": 1.162522284353982,
+        "max_weight": 1.311711076089411,
+        "lookback_days": 224,
+        "allow_shorts": true
+      },
+      "annualized_return": 0.30404702612312917,
+      "sharpe_ratio": 4.564460318391682,
+      "sortino_ratio": Infinity,
+      "max_drawdown": 0.0,
+      "outperformance": 0.14146842231382228,
+      "information_ratio": 2.9704230345123075,
+      "total_return": 0.30404702612312917,
+      "volatility": 0.062230144707055964,
+      "win_rate": 1.0
+    },
+    {
+      "config": {
+        "llm_temperature": 0.5706308912849292,
+        "llm_top_p": 0.7665933051962677,
+        "risk_aversion": 2.297912500367833,
+        "tau_for_covariance": 0.06783742864662169,
+        "tau_omega": 0.074888097206946,
+        "relative_confidence": 0.5371165100333325,
+        "max_weight": 1.1556473622121601,
+        "lookback_days": 181,
+        "allow_shorts": false
+      },
+      "annualized_return": 0.30150977821052116,
+      "sharpe_ratio": 4.531588569791174,
+      "sortino_ratio": Infinity,
+      "max_drawdown": 0.0,
+      "outperformance": 0.13893117440121427,
+      "information_ratio": 3.267098722478466,
+      "total_return": 0.30150977821052116,
+      "volatility": 0.06212165422235005,
+      "win_rate": 1.0
+    },
+    {
+      "config": {
+        "llm_temperature": 0.5033783434442648,
+        "llm_top_p": 0.7198813918140455,
+        "risk_aversion": 2.2757114484860046,
+        "tau_for_covariance": 0.07623630625716853,
+        "tau_omega": 0.08710525579447999,
+        "relative_confidence": 0.6788726490796823,
+        "max_weight": 1.0050271036921552,
+        "lookback_days": 169,
+        "allow_shorts": false
+      },
+      "annualized_return": 0.2952878634863718,
+      "sharpe_ratio": 4.442363515968332,
+      "sortino_ratio": Infinity,
+      "max_drawdown": 0.0,
+      "outperformance": 0.13270925967706493,
+      "information_ratio": 3.1973520460517713,
+      "total_return": 0.2952878634863718,
+      "volatility": 0.061968783620888666,
+      "win_rate": 1.0
+    },
+    {
+      "config": {
+        "llm_temperature": 0.7633468615779946,
+        "llm_top_p": 0.749678920383543,
+        "risk_aversion": 1.5110442342472048,
+        "tau_for_covariance": 0.08339152856093508,
+        "tau_omega": 0.0780143007885713,
+        "relative_confidence": 1.2290071680409873,
+        "max_weight": 1.7712703466859456,
+        "lookback_days": 140,
+        "allow_shorts": true
+      },
+      "annualized_return": 0.29475837878902755,
+      "sharpe_ratio": 4.439465913755614,
+      "sortino_ratio": Infinity,
+      "max_drawdown": 0.0,
+      "outperformance": 0.13217977497972067,
+      "information_ratio": 2.9746974836443236,
+      "total_return": 0.2947583787890275,
+      "volatility": 0.06188996246996584,
+      "win_rate": 1.0
+    },
+    {
+      "config": {
+        "llm_temperature": 0.664526911140863,
+        "llm_top_p": 0.7426310309218228,
+        "risk_aversion": 1.630103185970559,
+        "tau_for_covariance": 0.0953996983528,
+        "tau_omega": 0.09742240248059197,
+        "relative_confidence": 1.3083973481164612,
+        "max_weight": 1.3046137691733706,
+        "lookback_days": 144,
+        "allow_shorts": true
+      },
+      "annualized_return": 0.2944583523019042,
+      "sharpe_ratio": 4.435256608460353,
+      "sortino_ratio": Infinity,
+      "max_drawdown": 0.0,
+      "outperformance": 0.13187974849259732,
+      "information_ratio": 2.975249417419583,
+      "total_return": 0.29445835230190426,
+      "volatility": 0.06188105368658234,
+      "win_rate": 1.0
+    },
+    {
+      "config": {
+        "llm_temperature": 0.6396880635361262,
+        "llm_top_p": 0.7786910326216383,
+        "risk_aversion": 1.514615079368024,
+        "tau_for_covariance": 0.0989520807937565,
+        "tau_omega": 0.09801789659061237,
+        "relative_confidence": 1.4922374660015616,
+        "max_weight": 1.3824724078533506,
+        "lookback_days": 129,
+        "allow_shorts": true
+      },
+      "annualized_return": 0.292732246968177,
+      "sharpe_ratio": 4.4121828652748185,
+      "sortino_ratio": Infinity,
+      "max_drawdown": 0.0,
+      "outperformance": 0.13015364315887012,
+      "information_ratio": 2.9754394634633345,
+      "total_return": 0.29273224696817707,
+      "volatility": 0.06181345046114482,
+      "win_rate": 1.0
+    },
+    {
+      "config": {
+        "llm_temperature": 0.6176871590838705,
+        "llm_top_p": 0.7845124488575858,
+        "risk_aversion": 1.7945977366708634,
+        "tau_for_covariance": 0.08678072663460744,
+        "tau_omega": 0.0690761367118015,
+        "relative_confidence": 1.1283689736550258,
+        "max_weight": 1.599899200561385,
+        "lookback_days": 313,
+        "allow_shorts": true
+      },
+      "annualized_return": 0.2910962751256947,
+      "sharpe_ratio": 4.3892430597333485,
+      "sortino_ratio": Infinity,
+      "max_drawdown": 0.0,
+      "outperformance": 0.1285176713163878,
+      "information_ratio": 2.973958858506177,
+      "total_return": 0.2910962751256947,
+      "volatility": 0.061763787385737554,
+      "win_rate": 1.0
+    }
+  ],
+  "statistics": {
+    "mean_return": 0.27169756462192035,
+    "std_return": 0.03212266757578159,
+    "mean_sharpe": 4.069900759962273,
+    "std_sharpe": 0.5018187501468269,
+    "min_return": 0.20092087675662107,
+    "max_return": 0.3278691461466656,
+    "min_sharpe": 2.885459113235793,
+    "max_sharpe": 4.851910435619011
+  }
+}

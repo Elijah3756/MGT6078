@@ -1,7 +1,7 @@
 llm:
   model_type: finance-llm
-  temperature: 0.68
-  top_p: 0.762
+  temperature: 0.863
+  top_p: 0.759
 portfolio:
   tickers:
   - XLK
@@ -12,15 +12,15 @@ portfolio:
   - XLF
   initial_capital: 100000
 black_litterman:
-  risk_aversion: 2.243
-  tau_for_covariance: 0.08
-  tau_omega: 0.0901
-  relative_confidence: 0.532
+  risk_aversion: 1.579
+  tau_for_covariance: 0.0909
+  tau_omega: 0.0433
+  relative_confidence: 0.655
   allow_shorts: true
   min_weight: -1.0
-  max_weight: 1.17
+  max_weight: 1.55
 data:
-  lookback_days: 177
+  lookback_days: 293
   quarters:
   - Q1_2024
   - Q2_2024
