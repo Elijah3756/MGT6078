@@ -1,0 +1,267 @@
+Political News Collection - Multiple Quarters
+================================================================================
+Collecting data for 6 quarters:
+  - Q1 2024
+  - Q2 2024
+  - Q3 2024
+  - Q4 2024
+  - Q1 2025
+  - Q2 2025
+
+================================================================================
+Processing Q1 2024
+================================================================================
+
+================================================================================
+Collecting political news for Q1 2024
+Date range: 2024-01-01 to 2024-03-31
+================================================================================
+
+Searching for XLK (Technology Select Sector SPDR Fund)...
+  Fetching article content for 1 articles...
+  Found 1 articles
+Searching for XLY (Consumer Discretionary Select Sector SPDR Fund)...
+  Fetching article content for 154 articles...
+  Found 117 articles
+Searching for ITA (iShares U.S. Aerospace & Defense ETF)...
+  Fetching article content for 36 articles...
+  Found 29 articles
+Searching for XLE (Energy Select Sector SPDR Fund)...
+  Fetching article content for 95 articles...
+  Found 62 articles
+Searching for XLV (Health Care Select Sector SPDR Fund)...
+  Fetching article content for 427 articles...
+  Found 309 articles
+Searching for XLF (Financial Select Sector SPDR Fund)...
+  Fetching article content for 33 articles...
+  Found 26 articles
+
+Results saved to political_news_data/
+Summary: political_news_data/Q1_2024_summary.txt
+
+✓ Completed Q1 2024
+  LLM input saved to: political_news_data/Q1_2024_llm_input.txt
+
+Waiting 5 seconds before next quarter...
+
+================================================================================
+Processing Q2 2024
+================================================================================
+
+================================================================================
+Collecting political news for Q2 2024
+Date range: 2024-04-01 to 2024-06-30
+================================================================================
+
+Searching for XLK (Technology Select Sector SPDR Fund)...
+  Fetching article content for 1 articles...
+  Found 1 articles
+Searching for XLY (Consumer Discretionary Select Sector SPDR Fund)...
+  Fetching article content for 73 articles...
+  Found 67 articles
+Searching for ITA (iShares U.S. Aerospace & Defense ETF)...
+  Fetching article content for 36 articles...
+  Found 30 articles
+Searching for XLE (Energy Select Sector SPDR Fund)...
+  Fetching article content for 101 articles...
+  Found 65 articles
+Searching for XLV (Health Care Select Sector SPDR Fund)...
+  Fetching article content for 445 articles...
+  Found 303 articles
+Searching for XLF (Financial Select Sector SPDR Fund)...
+  Fetching article content for 55 articles...
+  Found 38 articles
+
+Results saved to political_news_data/
+Summary: political_news_data/Q2_2024_summary.txt
+
+✓ Completed Q2 2024
+  LLM input saved to: political_news_data/Q2_2024_llm_input.txt
+
+Waiting 5 seconds before next quarter...
+
+================================================================================
+Processing Q3 2024
+================================================================================
+
+================================================================================
+Collecting political news for Q3 2024
+Date range: 2024-07-01 to 2024-09-30
+================================================================================
+
+Searching for XLK (Technology Select Sector SPDR Fund)...
+  Fetching article content for 2 articles...
+  Found 1 articles
+Searching for XLY (Consumer Discretionary Select Sector SPDR Fund)...
+  Fetching article content for 123 articles...
+  Found 106 articles
+Searching for ITA (iShares U.S. Aerospace & Defense ETF)...
+  Fetching article content for 44 articles...
+  Found 36 articles
+Searching for XLE (Energy Select Sector SPDR Fund)...
+  Fetching article content for 86 articles...
+  Found 58 articles
+Searching for XLV (Health Care Select Sector SPDR Fund)...
+  Fetching article content for 472 articles...
+  Found 364 articles
+Searching for XLF (Financial Select Sector SPDR Fund)...
+  Fetching article content for 29 articles...
+  Found 26 articles
+
+Results saved to political_news_data/
+Summary: political_news_data/Q3_2024_summary.txt
+
+✓ Completed Q3 2024
+  LLM input saved to: political_news_data/Q3_2024_llm_input.txt
+
+Waiting 5 seconds before next quarter...
+
+================================================================================
+Processing Q4 2024
+================================================================================
+
+================================================================================
+Collecting political news for Q4 2024
+Date range: 2024-10-01 to 2024-12-31
+================================================================================
+
+Searching for XLK (Technology Select Sector SPDR Fund)...
+  Fetching article content for 5 articles...
+  Found 5 articles
+Searching for XLY (Consumer Discretionary Select Sector SPDR Fund)...
+  Fetching article content for 77 articles...
+  Found 60 articles
+Searching for ITA (iShares U.S. Aerospace & Defense ETF)...
+  Fetching article content for 39 articles...
+  Found 29 articles
+Searching for XLE (Energy Select Sector SPDR Fund)...
+  Fetching article content for 121 articles...
+  Found 80 articles
+Searching for XLV (Health Care Select Sector SPDR Fund)...
+  Fetching article content for 566 articles...
+  Found 201 articles
+Searching for XLF (Financial Select Sector SPDR Fund)...
+  No articles found
+
+Results saved to political_news_data/
+Summary: political_news_data/Q4_2024_summary.txt
+
+✓ Completed Q4 2024
+  LLM input saved to: political_news_data/Q4_2024_llm_input.txt
+
+Waiting 5 seconds before next quarter...
+
+================================================================================
+Processing Q1 2025
+================================================================================
+
+================================================================================
+Collecting political news for Q1 2025
+Date range: 2025-01-01 to 2025-03-31
+================================================================================
+
+Searching for XLK (Technology Select Sector SPDR Fund)...
+  No articles found
+Searching for XLY (Consumer Discretionary Select Sector SPDR Fund)...
+  No articles found
+Searching for ITA (iShares U.S. Aerospace & Defense ETF)...
+  No articles found
+Searching for XLE (Energy Select Sector SPDR Fund)...
+  No articles found
+Searching for XLV (Health Care Select Sector SPDR Fund)...
+  No articles found
+Searching for XLF (Financial Select Sector SPDR Fund)...
+  No articles found
+
+Results saved to political_news_data/
+Summary: political_news_data/Q1_2025_summary.txt
+
+✓ Completed Q1 2025
+  LLM input saved to: political_news_data/Q1_2025_llm_input.txt
+
+Waiting 5 seconds before next quarter...
+
+================================================================================
+Processing Q2 2025
+================================================================================
+
+================================================================================
+Collecting political news for Q2 2025
+Date range: 2025-04-01 to 2025-06-30
+================================================================================
+
+Searching for XLK (Technology Select Sector SPDR Fund)...
+  No articles found
+Searching for XLY (Consumer Discretionary Select Sector SPDR Fund)...
+  No articles found
+Searching for ITA (iShares U.S. Aerospace & Defense ETF)...
+  No articles found
+Searching for XLE (Energy Select Sector SPDR Fund)...
+  No articles found
+Searching for XLV (Health Care Select Sector SPDR Fund)...
+  No articles found
+Searching for XLF (Financial Select Sector SPDR Fund)...
+  No articles found
+
+Results saved to political_news_data/
+Summary: political_news_data/Q2_2025_summary.txt
+
+✓ Completed Q2 2025
+  LLM input saved to: political_news_data/Q2_2025_llm_input.txt
+
+Waiting 5 seconds before next quarter...
+
+================================================================================
+FINAL SUMMARY
+================================================================================
+
+Q1_2024:
+  XLK: 1 articles
+  XLY: 117 articles
+  ITA: 29 articles
+  XLE: 62 articles
+  XLV: 309 articles
+  XLF: 26 articles
+
+Q2_2024:
+  XLK: 1 articles
+  XLY: 67 articles
+  ITA: 30 articles
+  XLE: 65 articles
+  XLV: 303 articles
+  XLF: 38 articles
+
+Q3_2024:
+  XLK: 1 articles
+  XLY: 106 articles
+  ITA: 36 articles
+  XLE: 58 articles
+  XLV: 364 articles
+  XLF: 26 articles
+
+Q4_2024:
+  XLK: 5 articles
+  XLY: 60 articles
+  ITA: 29 articles
+  XLE: 80 articles
+  XLV: 201 articles
+  XLF: 0 articles
+
+Q1_2025:
+  XLK: 0 articles
+  XLY: 0 articles
+  ITA: 0 articles
+  XLE: 0 articles
+  XLV: 0 articles
+  XLF: 0 articles
+
+Q2_2025:
+  XLK: 0 articles
+  XLY: 0 articles
+  ITA: 0 articles
+  XLE: 0 articles
+  XLV: 0 articles
+  XLF: 0 articles
+
+✓ Collection complete! Processed 6 quarters.
+  All data saved in 'political_news_data/' directory

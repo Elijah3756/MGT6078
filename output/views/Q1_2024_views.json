@@ -1,0 +1,42 @@
+{
+  "quarter": "Q1_2024",
+  "views": [
+    {
+      "ticker": "XLK",
+      "expected_return": 0.0909,
+      "confidence": 40,
+      "reasoning": "Strong momentum from previous quarter (+11.1%). Expecting continued but moderated growth."
+    },
+    {
+      "ticker": "XLY",
+      "expected_return": 0.0565,
+      "confidence": 40,
+      "reasoning": "Stable performance expected based on historical patterns and current market conditions."
+    },
+    {
+      "ticker": "ITA",
+      "expected_return": 0.0819,
+      "confidence": 40,
+      "reasoning": "Strong momentum from previous quarter (+5.2%). Expecting continued but moderated growth."
+    },
+    {
+      "ticker": "XLE",
+      "expected_return": 0.0816,
+      "confidence": 40,
+      "reasoning": "Strong momentum from previous quarter (+11.4%). Expecting continued but moderated growth."
+    },
+    {
+      "ticker": "XLV",
+      "expected_return": 0.0531,
+      "confidence": 40,
+      "reasoning": "Strong momentum from previous quarter (+6.4%). Expecting continued but moderated growth."
+    },
+    {
+      "ticker": "XLF",
+      "expected_return": 0.0533,
+      "confidence": 40,
+      "reasoning": "Strong momentum from previous quarter (+11.5%). Expecting continued but moderated growth."
+    }
+  ],
+  "method": "simulated"
+}
