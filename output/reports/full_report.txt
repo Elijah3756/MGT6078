@@ -3,7 +3,7 @@ LLM-POWERED BLACK-LITTERMAN PORTFOLIO OPTIMIZATION
 BACKTEST REPORT
 ================================================================================
 
-Generated: 2025-11-17 11:06:05
+Generated: 2025-11-17 11:26:37
 
 
 ================================================================================
@@ -11,10 +11,10 @@ EXECUTIVE SUMMARY
 ================================================================================
 
 Strategy Performance:
-  Total Return:             39.39%
-  Annualized Return:        20.90%
-  Volatility:                6.30%
-  Sharpe Ratio:             3.0007
+  Total Return:             38.58%
+  Annualized Return:        20.50%
+  Volatility:                6.08%
+  Sharpe Ratio:             3.0402
   Maximum Drawdown:          0.00%
 
 Benchmark (Equal Weight) Performance:
@@ -25,26 +25,26 @@ Benchmark (Equal Weight) Performance:
   Maximum Drawdown:          0.00%
 
 Outperformance:
-  Annualized:                3.51%
+  Annualized:                3.11%
 
 ================================================================================
 DETAILED PERFORMANCE METRICS
 ================================================================================
 
 Risk-Adjusted Returns:
-  Sharpe Ratio:             3.0007
-  Sortino Ratio:            0.0000
+  Sharpe Ratio:             3.0402
+  Sortino Ratio:               inf
   Calmar Ratio:             0.0000
-  Information Ratio:        1.5586
+  Information Ratio:        1.7784
 
 Risk Metrics:
-  Volatility (annual):       6.30%
+  Volatility (annual):       6.08%
   VaR (95%):                0.89%
-  CVaR (95%):               0.44%
+  CVaR (95%):               0.61%
   Maximum Drawdown:          0.00%
 
 Turnover:
-  Average per Quarter:       9.34%
+  Average per Quarter:      10.86%
 
 ================================================================================
 QUARTERLY PERFORMANCE
@@ -52,87 +52,87 @@ QUARTERLY PERFORMANCE
 
 Quarter        Strategy  Benchmark       Diff
 ---------------------------------------------
-Q1_2024          8.25%     8.25%     0.00%
-Q2_2024          0.44%     0.44%     0.00%
-Q3_2024          5.80%     5.80%     0.00%
-Q4_2024          1.93%     1.07%     0.86%
-Q1_2025          2.35%     0.19%     2.16%
-Q2_2025          9.44%     7.09%     2.35%
-Q3_2025          6.13%     6.13%    -0.00%
+Q1_2024          8.21%     8.25%    -0.04%
+Q2_2024          0.61%     0.44%     0.17%
+Q3_2024          6.27%     5.80%     0.47%
+Q4_2024          1.55%     1.07%     0.48%
+Q1_2025          2.29%     0.19%     2.10%
+Q2_2025          8.63%     7.09%     1.55%
+Q3_2025          6.15%     6.13%     0.02%
 
 ================================================================================
 PORTFOLIO ALLOCATIONS
 ================================================================================
 
 Q1_2024:
-  Sharpe Ratio: 0.0206
-  Allocations:
-    ITA: 16.66%
-    XLE: 16.68%
-    XLF: 16.67%
-    XLK: 16.68%
-    XLV: 16.66%
-    XLY: 16.66%
-
-Q2_2024:
-  Sharpe Ratio: 0.0192
-  Allocations:
-    ITA: 16.66%
-    XLE: 16.66%
-    XLF: 16.66%
-    XLK: 16.69%
-    XLV: 16.67%
-    XLY: 16.66%
-
-Q3_2024:
-  Sharpe Ratio: 0.0233
-  Allocations:
-    ITA: 16.67%
-    XLE: 16.63%
-    XLF: 16.67%
-    XLK: 16.67%
-    XLV: 16.67%
-    XLY: 16.68%
-
-Q4_2024:
   Sharpe Ratio: 0.0215
   Allocations:
-    ITA: 15.81%
-    XLE: 13.87%
-    XLF: 16.51%
-    XLK: 19.50%
-    XLV: 14.78%
-    XLY: 19.54%
+    ITA: 14.18%
+    XLE: 16.20%
+    XLF: 14.68%
+    XLK: 19.00%
+    XLV: 17.34%
+    XLY: 18.61%
+
+Q2_2024:
+  Sharpe Ratio: 0.0158
+  Allocations:
+    ITA: 16.37%
+    XLE: 16.49%
+    XLF: 14.41%
+    XLK: 18.33%
+    XLV: 20.66%
+    XLY: 13.74%
+
+Q3_2024:
+  Sharpe Ratio: 0.0204
+  Allocations:
+    ITA: 18.13%
+    XLE: 16.47%
+    XLF: 19.63%
+    XLK: 14.01%
+    XLV: 13.91%
+    XLY: 17.85%
+
+Q4_2024:
+  Sharpe Ratio: 0.0222
+  Allocations:
+    ITA: 18.71%
+    XLE: 14.40%
+    XLF: 15.71%
+    XLK: 17.91%
+    XLV: 14.61%
+    XLY: 18.66%
 
 Q1_2025:
-  Sharpe Ratio: 0.0198
+  Sharpe Ratio: 0.0207
   Allocations:
-    ITA: 20.24%
-    XLE: 16.03%
-    XLF: 22.02%
-    XLK: 12.90%
-    XLV: 22.13%
-    XLY:  6.68%
+    ITA: 18.97%
+    XLE: 22.22%
+    XLF: 18.46%
+    XLK: 12.11%
+    XLV: 19.17%
+    XLY:  9.07%
 
 Q2_2025:
-  Sharpe Ratio: 0.0388
+  Sharpe Ratio: 0.0384
   Allocations:
-    ITA: 18.56%
-    XLE: 10.35%
-    XLF: 15.33%
-    XLK: 21.29%
-    XLV: 14.83%
-    XLY: 19.64%
+    ITA: 20.55%
+    XLE: 11.26%
+    XLF: 14.86%
+    XLK: 18.10%
+    XLV: 18.26%
+    XLY: 16.97%
 
 Q3_2025:
-  Sharpe Ratio: 0.0356
+  Sharpe Ratio: 0.0311
   Allocations:
-    ITA: 16.68%
-    XLE: 16.67%
-    XLF: 16.66%
-    XLK: 16.66%
-    XLV: 16.66%
-    XLY: 16.65%
+    ITA: 15.78%
+    XLE: 18.38%
+    XLF: 16.39%
+    XLK: 14.40%
+    XLV: 15.31%
+    XLY: 19.75%
 
 ================================================================================
 METHODOLOGY
@@ -176,7 +176,7 @@ CONCLUSION
 ================================================================================
 
 The LLM-powered Black-Litterman strategy outperformed the equal-weight benchmark
-by 3.51% annually over the test period. This demonstrates the potential
+by 3.11% annually over the test period. This demonstrates the potential
 value of incorporating LLM-analyzed qualitative data into quantitative portfolio
 optimization frameworks.
 

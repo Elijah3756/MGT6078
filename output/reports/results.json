@@ -1,20 +1,20 @@
 {
-  "generated_at": "2025-11-17T11:06:05.545281",
+  "generated_at": "2025-11-17T11:26:37.345068",
   "strategy": {
     "history": [
       {
         "quarter": "Q1_2024",
         "quarter_num": 1,
         "start_value": 100000,
-        "end_value": 108251.45500192343,
-        "return": 0.08251455001923447,
+        "end_value": 108214.1593798459,
+        "return": 0.08214159379845917,
         "weights": {
-          "XLK": 0.16679050567715248,
-          "XLY": 0.16657837670451647,
-          "ITA": 0.1665510221306853,
-          "XLE": 0.1668201440867657,
-          "XLV": 0.16659315120583984,
-          "XLF": 0.16666680019504088
+          "XLK": 0.18996774825606577,
+          "XLY": 0.1861345035678822,
+          "ITA": 0.1417657066167429,
+          "XLE": 0.16195098260352908,
+          "XLV": 0.17335168381357893,
+          "XLF": 0.14682937514220112
         },
         "ticker_returns": {
           "XLK": 0.11112889457959887,
@@ -28,16 +28,16 @@
       {
         "quarter": "Q2_2024",
         "quarter_num": 2,
-        "start_value": 108251.45500192343,
-        "end_value": 108727.66462840147,
-        "return": 0.004399106011735229,
+        "start_value": 108214.1593798459,
+        "end_value": 108869.4044856616,
+        "return": 0.006055077353747105,
         "weights": {
-          "XLK": 0.16692046169191677,
-          "XLY": 0.1666257712058722,
-          "ITA": 0.1665648540947584,
-          "XLE": 0.16660872520878922,
-          "XLV": 0.16669186507351685,
-          "XLF": 0.1665883227251468
+          "XLK": 0.18333883485197808,
+          "XLY": 0.13741174248822033,
+          "ITA": 0.16372619588749365,
+          "XLE": 0.16485843416567403,
+          "XLV": 0.2065658266777491,
+          "XLF": 0.1440989659288848
         },
         "ticker_returns": {
           "XLK": 0.08321762030165189,
@@ -51,16 +51,16 @@
       {
         "quarter": "Q3_2024",
         "quarter_num": 3,
-        "start_value": 108727.66462840147,
-        "end_value": 115036.65955114308,
-        "return": 0.05802566388511926,
+        "start_value": 108869.4044856616,
+        "end_value": 115693.60151832676,
+        "return": 0.06268241352935786,
         "weights": {
-          "XLK": 0.16673384925040036,
-          "XLY": 0.16675132295737627,
-          "ITA": 0.1667303153468913,
-          "XLE": 0.16633317751499488,
-          "XLV": 0.16674143091465,
-          "XLF": 0.16670990401568464
+          "XLK": 0.14010809808584698,
+          "XLY": 0.1785399567405676,
+          "ITA": 0.18130397276393237,
+          "XLE": 0.16468358150148002,
+          "XLV": 0.1390738285228891,
+          "XLF": 0.19629056238528395
         },
         "ticker_returns": {
           "XLK": -0.00956392032991141,
@@ -74,16 +74,16 @@
       {
         "quarter": "Q4_2024",
         "quarter_num": 4,
-        "start_value": 115036.65955114308,
-        "end_value": 117253.54155368808,
-        "return": 0.01927109159110634,
+        "start_value": 115693.60151832676,
+        "end_value": 117486.80979554245,
+        "return": 0.015499632250031021,
         "weights": {
-          "XLK": 0.19497466057026053,
-          "XLY": 0.1953595063297853,
-          "ITA": 0.15805308624031178,
-          "XLE": 0.1387262409631578,
-          "XLV": 0.14781353792359328,
-          "XLF": 0.16507296797289134
+          "XLK": 0.17912633417333634,
+          "XLY": 0.18655039151600883,
+          "ITA": 0.187091276494076,
+          "XLE": 0.1440099440639552,
+          "XLV": 0.14611130915128065,
+          "XLF": 0.157110744601343
         },
         "ticker_returns": {
           "XLK": 0.05566149096522301,
@@ -97,16 +97,16 @@
       {
         "quarter": "Q1_2025",
         "quarter_num": 5,
-        "start_value": 117253.54155368808,
-        "end_value": 120007.80362547925,
-        "return": 0.023489798562119052,
+        "start_value": 117486.80979554245,
+        "end_value": 120178.93830816851,
+        "return": 0.022914304314765616,
         "weights": {
-          "XLK": 0.12899082084678384,
-          "XLY": 0.06681478089256902,
-          "ITA": 0.20240841207161644,
-          "XLE": 0.16025448270188788,
-          "XLV": 0.22134161546610476,
-          "XLF": 0.22018988802103798
+          "XLK": 0.12105410096447544,
+          "XLY": 0.09074150283121825,
+          "ITA": 0.1896803009619854,
+          "XLE": 0.22219501815015794,
+          "XLV": 0.1916997142395671,
+          "XLF": 0.18462936285259593
         },
         "ticker_returns": {
           "XLK": -0.10988489890934176,
@@ -120,16 +120,16 @@
       {
         "quarter": "Q2_2025",
         "quarter_num": 6,
-        "start_value": 120007.80362547925,
-        "end_value": 131336.26107477577,
-        "return": 0.09439767337672823,
+        "start_value": 120178.93830816851,
+        "end_value": 130555.78198967977,
+        "return": 0.08634494386114888,
         "weights": {
-          "XLK": 0.2129364096714023,
-          "XLY": 0.1963555986568819,
-          "ITA": 0.18562114837434862,
-          "XLE": 0.10350585195124992,
-          "XLV": 0.14826355922571258,
-          "XLF": 0.1533174321204047
+          "XLK": 0.18104397471782532,
+          "XLY": 0.16969735745289263,
+          "ITA": 0.20553543130181923,
+          "XLE": 0.11255822546001289,
+          "XLV": 0.18259074029945638,
+          "XLF": 0.14857427076799348
         },
         "ticker_returns": {
           "XLK": 0.21751045723352075,
@@ -143,16 +143,16 @@
       {
         "quarter": "Q3_2025",
         "quarter_num": 7,
-        "start_value": 131336.26107477577,
-        "end_value": 139392.284982815,
-        "return": 0.06133891616918018,
+        "start_value": 130555.78198967977,
+        "end_value": 138584.78821815673,
+        "return": 0.06149866444912884,
         "weights": {
-          "XLK": 0.1666376382733391,
-          "XLY": 0.16653850177923835,
-          "ITA": 0.16684071176374926,
-          "XLE": 0.1667383035334451,
-          "XLV": 0.16659988990674368,
-          "XLF": 0.1666449547434845
+          "XLK": 0.14397066507677844,
+          "XLY": 0.19748993143511093,
+          "ITA": 0.157794261838598,
+          "XLE": 0.18376155085323728,
+          "XLV": 0.15312485008523782,
+          "XLF": 0.16385874071103745
         },
         "ticker_returns": {
           "XLK": 0.12308244013228678,
@@ -166,26 +166,26 @@
     ],
     "summary": {
       "initial_capital": 100000,
-      "final_value": 139392.284982815,
-      "total_return": 0.39392284982815007,
-      "annualized_return": 0.2089884047048216,
-      "volatility": 0.06298152170132432,
-      "sharpe_ratio": 3.00069607084212,
+      "final_value": 138584.78821815673,
+      "total_return": 0.38584788218156724,
+      "annualized_return": 0.20498133950007213,
+      "volatility": 0.060844196166472346,
+      "sharpe_ratio": 3.040246254448908,
       "max_drawdown": 0.0,
       "win_rate": 1.0,
       "n_quarters": 7,
-      "best_quarter": 0.09439767337672823,
-      "worst_quarter": 0.004399106011735229,
-      "avg_quarterly_return": 0.04906239994503182
+      "best_quarter": 0.08634494386114888,
+      "worst_quarter": 0.006055077353747105,
+      "avg_quarterly_return": 0.04816237565094835
     },
     "quarterly_returns": [
-      0.08251455001923447,
-      0.004399106011735229,
-      0.05802566388511926,
-      0.01927109159110634,
-      0.023489798562119052,
-      0.09439767337672823,
-      0.06133891616918018
+      0.08214159379845917,
+      0.006055077353747105,
+      0.06268241352935786,
+      0.015499632250031021,
+      0.022914304314765616,
+      0.08634494386114888,
+      0.06149866444912884
     ]
   },
   "benchmark": {
@@ -377,76 +377,76 @@
     ]
   },
   "metrics": {
-    "total_return": 0.39392284982815007,
-    "annualized_return": 0.2089884047048216,
-    "volatility": 0.06298152170132432,
-    "sharpe_ratio": 3.00069607084212,
+    "total_return": 0.38584788218156724,
+    "annualized_return": 0.20498133950007213,
+    "volatility": 0.060844196166472346,
+    "sharpe_ratio": 3.040246254448908,
     "max_drawdown": 0.0,
     "win_rate": 1.0,
-    "sortino_ratio": 0.0,
+    "sortino_ratio": Infinity,
     "calmar_ratio": 0.0,
-    "var_95": 0.008860701685546566,
-    "cvar_95": 0.004399106011735229,
-    "avg_turnover": 0.09341872130189632,
-    "information_ratio": 1.558610719704161,
-    "outperformance": 0.03509900070513172
+    "var_95": 0.008888443822632283,
+    "cvar_95": 0.006055077353747105,
+    "avg_turnover": 0.10863257940511883,
+    "information_ratio": 1.7783768818807084,
+    "outperformance": 0.03109193550038225
   },
   "portfolios": [
     {
       "quarter": "Q1_2024",
       "weights": [
-        0.16679050567715248,
-        0.16657837670451647,
-        0.1665510221306853,
-        0.1668201440867657,
-        0.16659315120583984,
-        0.16666680019504088
+        0.18996774825606577,
+        0.1861345035678822,
+        0.1417657066167429,
+        0.16195098260352908,
+        0.17335168381357893,
+        0.14682937514220112
       ],
-      "sharpe": 0.020559573757965056,
+      "sharpe": 0.021483999479050175,
       "ticker_weights": {
-        "XLK": 0.16679050567715248,
-        "XLY": 0.16657837670451647,
-        "ITA": 0.1665510221306853,
-        "XLE": 0.1668201440867657,
-        "XLV": 0.16659315120583984,
-        "XLF": 0.16666680019504088
+        "XLK": 0.18996774825606577,
+        "XLY": 0.1861345035678822,
+        "ITA": 0.1417657066167429,
+        "XLE": 0.16195098260352908,
+        "XLV": 0.17335168381357893,
+        "XLF": 0.14682937514220112
       },
       "views_used": {
         "quarter": "Q1_2024",
         "views": [
           {
             "ticker": "XLK",
-            "expected_return": 0.1073,
+            "expected_return": 0.0854,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+11.1%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLY",
-            "expected_return": -0.0075,
+            "expected_return": 0.08,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           },
           {
             "ticker": "ITA",
-            "expected_return": -0.011,
+            "expected_return": 0.0131,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+5.2%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLE",
-            "expected_return": 0.0795,
+            "expected_return": 0.0435,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+11.4%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLV",
-            "expected_return": 0.0068,
+            "expected_return": 0.0606,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+6.4%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLF",
-            "expected_return": 0.0611,
+            "expected_return": 0.0207,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+11.5%). Expecting continued but moderated growth."
           }
@@ -458,63 +458,74 @@
         "tau_for_covariance": 0.025,
         "tau_omega": 0.05,
         "relative_confidence": 1.0
+      },
+      "optimization_info": {
+        "success": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 22,
+        "converged": true
+      },
+      "constraints": {
+        "allow_shorts": true,
+        "min_weight": -1.0,
+        "max_weight": 2.0
       }
     },
     {
       "quarter": "Q2_2024",
       "weights": [
-        0.16692046169191677,
-        0.1666257712058722,
-        0.1665648540947584,
-        0.16660872520878922,
-        0.16669186507351685,
-        0.1665883227251468
+        0.18333883485197808,
+        0.13741174248822033,
+        0.16372619588749365,
+        0.16485843416567403,
+        0.2065658266777491,
+        0.1440989659288848
       ],
-      "sharpe": 0.01917264548489687,
+      "sharpe": 0.01579900194434579,
       "ticker_weights": {
-        "XLK": 0.16692046169191677,
-        "XLY": 0.1666257712058722,
-        "ITA": 0.1665648540947584,
-        "XLE": 0.16660872520878922,
-        "XLV": 0.16669186507351685,
-        "XLF": 0.1665883227251468
+        "XLK": 0.18333883485197808,
+        "XLY": 0.13741174248822033,
+        "ITA": 0.16372619588749365,
+        "XLE": 0.16485843416567403,
+        "XLV": 0.2065658266777491,
+        "XLF": 0.1440989659288848
       },
       "views_used": {
         "quarter": "Q2_2024",
         "views": [
           {
             "ticker": "XLK",
-            "expected_return": 0.1211,
+            "expected_return": 0.0247,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+8.3%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLY",
-            "expected_return": -0.0045,
+            "expected_return": -0.0314,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           },
           {
             "ticker": "ITA",
-            "expected_return": 0.0121,
+            "expected_return": 0.0023,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           },
           {
             "ticker": "XLE",
-            "expected_return": 0.055,
+            "expected_return": 0.0021,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           },
           {
             "ticker": "XLV",
-            "expected_return": 0.0865,
+            "expected_return": 0.0523,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           },
           {
             "ticker": "XLF",
-            "expected_return": 0.0026,
+            "expected_return": -0.0257,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           }
@@ -526,63 +537,74 @@
         "tau_for_covariance": 0.025,
         "tau_omega": 0.05,
         "relative_confidence": 1.0
+      },
+      "optimization_info": {
+        "success": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 12,
+        "converged": true
+      },
+      "constraints": {
+        "allow_shorts": true,
+        "min_weight": -1.0,
+        "max_weight": 2.0
       }
     },
     {
       "quarter": "Q3_2024",
       "weights": [
-        0.16673384925040036,
-        0.16675132295737627,
-        0.1667303153468913,
-        0.16633317751499488,
-        0.16674143091465,
-        0.16670990401568464
+        0.14010809808584698,
+        0.1785399567405676,
+        0.18130397276393237,
+        0.16468358150148002,
+        0.1390738285228891,
+        0.19629056238528395
       ],
-      "sharpe": 0.023324985461280912,
+      "sharpe": 0.020395331718891546,
       "ticker_weights": {
-        "XLK": 0.16673384925040036,
-        "XLY": 0.16675132295737627,
-        "ITA": 0.1667303153468913,
-        "XLE": 0.16633317751499488,
-        "XLV": 0.16674143091465,
-        "XLF": 0.16670990401568464
+        "XLK": 0.14010809808584698,
+        "XLY": 0.1785399567405676,
+        "ITA": 0.18130397276393237,
+        "XLE": 0.16468358150148002,
+        "XLV": 0.1390738285228891,
+        "XLF": 0.19629056238528395
       },
       "views_used": {
         "quarter": "Q3_2024",
         "views": [
           {
             "ticker": "XLK",
-            "expected_return": 0.0528,
+            "expected_return": -0.0085,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           },
           {
             "ticker": "XLY",
-            "expected_return": 0.0631,
+            "expected_return": 0.0435,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+9.5%). Expecting continued but moderated growth."
           },
           {
             "ticker": "ITA",
-            "expected_return": 0.0983,
+            "expected_return": 0.0482,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+13.7%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLE",
-            "expected_return": -0.0202,
+            "expected_return": 0.0247,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           },
           {
             "ticker": "XLV",
-            "expected_return": 0.0806,
+            "expected_return": -0.0103,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+6.3%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLF",
-            "expected_return": 0.1007,
+            "expected_return": 0.0678,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+10.0%). Expecting continued but moderated growth."
           }
@@ -594,63 +616,74 @@
         "tau_for_covariance": 0.025,
         "tau_omega": 0.05,
         "relative_confidence": 1.0
+      },
+      "optimization_info": {
+        "success": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 19,
+        "converged": true
+      },
+      "constraints": {
+        "allow_shorts": true,
+        "min_weight": -1.0,
+        "max_weight": 2.0
       }
     },
     {
       "quarter": "Q4_2024",
       "weights": [
-        0.19497466057026053,
-        0.1953595063297853,
-        0.15805308624031178,
-        0.1387262409631578,
-        0.14781353792359328,
-        0.16507296797289134
+        0.17912633417333634,
+        0.18655039151600883,
+        0.187091276494076,
+        0.1440099440639552,
+        0.14611130915128065,
+        0.157110744601343
       ],
-      "sharpe": 0.021542920707705575,
+      "sharpe": 0.022168806994800252,
       "ticker_weights": {
-        "XLK": 0.19497466057026053,
-        "XLY": 0.1953595063297853,
-        "ITA": 0.15805308624031178,
-        "XLE": 0.1387262409631578,
-        "XLV": 0.14781353792359328,
-        "XLF": 0.16507296797289134
+        "XLK": 0.17912633417333634,
+        "XLY": 0.18655039151600883,
+        "ITA": 0.187091276494076,
+        "XLE": 0.1440099440639552,
+        "XLV": 0.14611130915128065,
+        "XLF": 0.157110744601343
       },
       "views_used": {
         "quarter": "Q4_2024",
         "views": [
           {
             "ticker": "XLK",
-            "expected_return": 0.0506,
+            "expected_return": 0.0532,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+5.6%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLY",
-            "expected_return": 0.0867,
+            "expected_return": 0.0641,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+12.4%). Expecting continued but moderated growth."
           },
           {
             "ticker": "ITA",
-            "expected_return": 0.0051,
+            "expected_return": 0.0645,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           },
           {
             "ticker": "XLE",
-            "expected_return": -0.0115,
+            "expected_return": 0.0035,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           },
           {
             "ticker": "XLV",
-            "expected_return": -0.0592,
+            "expected_return": 0.0065,
             "confidence": 40,
             "reasoning": "Recovery expected after previous decline (-10.2%). Mean reversion likely."
           },
           {
             "ticker": "XLF",
-            "expected_return": 0.0629,
+            "expected_return": 0.0223,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+7.2%). Expecting continued but moderated growth."
           }
@@ -662,63 +695,74 @@
         "tau_for_covariance": 0.025,
         "tau_omega": 0.05,
         "relative_confidence": 1.0
+      },
+      "optimization_info": {
+        "success": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 17,
+        "converged": true
+      },
+      "constraints": {
+        "allow_shorts": true,
+        "min_weight": -1.0,
+        "max_weight": 2.0
       }
     },
     {
       "quarter": "Q1_2025",
       "weights": [
-        0.12899082084678384,
-        0.06681478089256902,
-        0.20240841207161644,
-        0.16025448270188788,
-        0.22134161546610476,
-        0.22018988802103798
+        0.12105410096447544,
+        0.09074150283121825,
+        0.1896803009619854,
+        0.22219501815015794,
+        0.1916997142395671,
+        0.18462936285259593
       ],
-      "sharpe": 0.019805151533412352,
+      "sharpe": 0.020676322709495733,
       "ticker_weights": {
-        "XLK": 0.12899082084678384,
-        "XLY": 0.06681478089256902,
-        "ITA": 0.20240841207161644,
-        "XLE": 0.16025448270188788,
-        "XLV": 0.22134161546610476,
-        "XLF": 0.22018988802103798
+        "XLK": 0.12105410096447544,
+        "XLY": 0.09074150283121825,
+        "ITA": 0.1896803009619854,
+        "XLE": 0.22219501815015794,
+        "XLV": 0.1916997142395671,
+        "XLF": 0.18462936285259593
       },
       "views_used": {
         "quarter": "Q1_2025",
         "views": [
           {
             "ticker": "XLK",
-            "expected_return": -0.0301,
+            "expected_return": -0.0438,
             "confidence": 40,
             "reasoning": "Recovery expected after previous decline (-11.0%). Mean reversion likely."
           },
           {
             "ticker": "XLY",
-            "expected_return": -0.1322,
+            "expected_return": -0.0838,
             "confidence": 40,
             "reasoning": "Recovery expected after previous decline (-10.8%). Mean reversion likely."
           },
           {
             "ticker": "ITA",
-            "expected_return": 0.0416,
+            "expected_return": 0.0425,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+5.7%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLE",
-            "expected_return": 0.0066,
+            "expected_return": 0.0854,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+7.8%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLV",
-            "expected_return": 0.0667,
+            "expected_return": 0.0456,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+6.1%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLF",
-            "expected_return": 0.0904,
+            "expected_return": 0.0392,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           }
@@ -730,63 +774,74 @@
         "tau_for_covariance": 0.025,
         "tau_omega": 0.05,
         "relative_confidence": 1.0
+      },
+      "optimization_info": {
+        "success": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 16,
+        "converged": true
+      },
+      "constraints": {
+        "allow_shorts": true,
+        "min_weight": -1.0,
+        "max_weight": 2.0
       }
     },
     {
       "quarter": "Q2_2025",
       "weights": [
-        0.2129364096714023,
-        0.1963555986568819,
-        0.18562114837434862,
-        0.10350585195124992,
-        0.14826355922571258,
-        0.1533174321204047
+        0.18104397471782532,
+        0.16969735745289263,
+        0.20553543130181923,
+        0.11255822546001289,
+        0.18259074029945638,
+        0.14857427076799348
       ],
-      "sharpe": 0.03882307152156079,
+      "sharpe": 0.038396356716542165,
       "ticker_weights": {
-        "XLK": 0.2129364096714023,
-        "XLY": 0.1963555986568819,
-        "ITA": 0.18562114837434862,
-        "XLE": 0.10350585195124992,
-        "XLV": 0.14826355922571258,
-        "XLF": 0.1533174321204047
+        "XLK": 0.18104397471782532,
+        "XLY": 0.16969735745289263,
+        "ITA": 0.20553543130181923,
+        "XLE": 0.11255822546001289,
+        "XLV": 0.18259074029945638,
+        "XLF": 0.14857427076799348
       },
       "views_used": {
         "quarter": "Q2_2025",
         "views": [
           {
             "ticker": "XLK",
-            "expected_return": 0.1094,
+            "expected_return": 0.0787,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+21.8%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLY",
-            "expected_return": 0.0929,
+            "expected_return": 0.0617,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+8.9%). Expecting continued but moderated growth."
           },
           {
             "ticker": "ITA",
-            "expected_return": 0.13,
+            "expected_return": 0.1166,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+22.3%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLE",
-            "expected_return": -0.0456,
+            "expected_return": -0.0264,
             "confidence": 40,
             "reasoning": "Recovery expected after previous decline (-9.8%). Mean reversion likely."
           },
           {
             "ticker": "XLV",
-            "expected_return": 0.0033,
+            "expected_return": 0.0803,
             "confidence": 40,
             "reasoning": "Recovery expected after previous decline (-6.0%). Mean reversion likely."
           },
           {
             "ticker": "XLF",
-            "expected_return": 0.0103,
+            "expected_return": 0.0286,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+5.3%). Expecting continued but moderated growth."
           }
@@ -798,63 +853,74 @@
         "tau_for_covariance": 0.025,
         "tau_omega": 0.05,
         "relative_confidence": 1.0
+      },
+      "optimization_info": {
+        "success": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 24,
+        "converged": true
+      },
+      "constraints": {
+        "allow_shorts": true,
+        "min_weight": -1.0,
+        "max_weight": 2.0
       }
     },
     {
       "quarter": "Q3_2025",
       "weights": [
-        0.1666376382733391,
-        0.16653850177923835,
-        0.16684071176374926,
-        0.1667383035334451,
-        0.16659988990674368,
-        0.1666449547434845
+        0.14397066507677844,
+        0.19748993143511093,
+        0.157794261838598,
+        0.18376155085323728,
+        0.15312485008523782,
+        0.16385874071103745
       ],
-      "sharpe": 0.03560898242620789,
+      "sharpe": 0.03108673854138675,
       "ticker_weights": {
-        "XLK": 0.1666376382733391,
-        "XLY": 0.16653850177923835,
-        "ITA": 0.16684071176374926,
-        "XLE": 0.1667383035334451,
-        "XLV": 0.16659988990674368,
-        "XLF": 0.1666449547434845
+        "XLK": 0.14397066507677844,
+        "XLY": 0.19748993143511093,
+        "ITA": 0.157794261838598,
+        "XLE": 0.18376155085323728,
+        "XLV": 0.15312485008523782,
+        "XLF": 0.16385874071103745
       },
       "views_used": {
         "quarter": "Q3_2025",
         "views": [
           {
             "ticker": "XLK",
-            "expected_return": 0.0801,
+            "expected_return": -0.0005,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+12.3%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLY",
-            "expected_return": 0.0182,
+            "expected_return": 0.0728,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+9.8%). Expecting continued but moderated growth."
           },
           {
             "ticker": "ITA",
-            "expected_return": 0.0706,
+            "expected_return": 0.0179,
             "confidence": 40,
             "reasoning": "Strong momentum from previous quarter (+6.1%). Expecting continued but moderated growth."
           },
           {
             "ticker": "XLE",
-            "expected_return": 0.0846,
+            "expected_return": 0.0541,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           },
           {
             "ticker": "XLV",
-            "expected_return": 0.0425,
+            "expected_return": 0.0111,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           },
           {
             "ticker": "XLF",
-            "expected_return": 0.0824,
+            "expected_return": 0.0245,
             "confidence": 40,
             "reasoning": "Stable performance expected based on historical patterns and current market conditions."
           }
@@ -866,6 +932,17 @@
         "tau_for_covariance": 0.025,
         "tau_omega": 0.05,
         "relative_confidence": 1.0
+      },
+      "optimization_info": {
+        "success": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 22,
+        "converged": true
+      },
+      "constraints": {
+        "allow_shorts": true,
+        "min_weight": -1.0,
+        "max_weight": 2.0
       }
     }
   ]

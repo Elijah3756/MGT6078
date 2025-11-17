@@ -28,9 +28,9 @@ def main():
     
     # Parse arguments
     parser = argparse.ArgumentParser(description='LLM-Powered Black-Litterman Portfolio Optimization')
-    parser.add_argument('--llm-type', type=str, default='simulated',
-                       choices=['simulated', 'finance-llm', 'anthropic', 'openai'],
-                       help='LLM model type to use')
+    parser.add_argument('--llm-type', type=str, default='finance-llm',
+                       choices=['finance-llm', 'simulated'],
+                       help='LLM model type: finance-llm (local AdaptLLM model, default) or simulated (fallback only)')
     parser.add_argument('--quarters', type=str, nargs='+',
                        default=['Q1_2024', 'Q2_2024', 'Q3_2024', 'Q4_2024', 'Q1_2025', 'Q2_2025', 'Q3_2025'],
                        help='Quarters to analyze')

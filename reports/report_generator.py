@@ -216,14 +216,20 @@ Areas for improvement:
             """Convert numpy types to Python types"""
             if isinstance(obj, np.ndarray):
                 return obj.tolist()
-            elif isinstance(obj, np.integer):
+            elif isinstance(obj, (np.integer, np.int_, np.intc, np.intp, np.int8,
+                                  np.int16, np.int32, np.int64, np.uint8, np.uint16,
+                                  np.uint32, np.uint64)):
                 return int(obj)
-            elif isinstance(obj, np.floating):
+            elif isinstance(obj, (np.floating, np.float_, np.float16, np.float32, np.float64)):
                 return float(obj)
+            elif isinstance(obj, (np.bool_, np.bool8)):
+                return bool(obj)
             elif isinstance(obj, dict):
                 return {k: convert_to_json_serializable(v) for k, v in obj.items()}
             elif isinstance(obj, list):
                 return [convert_to_json_serializable(item) for item in obj]
+            elif isinstance(obj, tuple):
+                return tuple(convert_to_json_serializable(item) for item in obj)
             else:
                 return obj
         

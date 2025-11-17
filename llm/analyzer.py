@@ -11,32 +11,32 @@ from llm.views_parser import ViewsParser
 
 
 class LLMAnalyzer:
-    """Analyze financial data and generate investment views using LLM"""
+    """Analyze financial data and generate investment views using local AdaptLLM/Finance-LLM model"""
     
-    def __init__(self, model_type="simulated", api_key=None):
+    def __init__(self, model_type="finance-llm", temperature=0.7, top_p=0.9):
         """
         Initialize LLM Analyzer
         
         Args:
-            model_type: 'simulated', 'finance-llm', 'anthropic', or 'openai'
-            api_key: API key for the chosen provider
+            model_type: 'finance-llm' (default) or 'simulated' (fallback only)
+            temperature: Sampling temperature (0.0-2.0, lower = more deterministic)
+            top_p: Nucleus sampling parameter (0.0-1.0)
         """
+        # Only support finance-llm (local model) or simulated (fallback)
+        if model_type not in ["finance-llm", "simulated"]:
+            print(f"Warning: {model_type} not supported. Using finance-llm.")
+            model_type = "finance-llm"
+        
         self.model_type = model_type
-        self.api_key = api_key or os.getenv('ANTHROPIC_API_KEY') or os.getenv('OPENAI_API_KEY')
+        self.temperature = temperature
+        self.top_p = top_p
         self.parser = ViewsParser()
         self.finance_model = None
         self.finance_tokenizer = None
         
-        # Load finance-LLM model if requested
+        # Always try to load finance-LLM model (unless explicitly simulated)
         if model_type == "finance-llm":
             self._load_finance_llm()
-        
-        if model_type == "anthropic" and not self.api_key:
-            print("Warning: No Anthropic API key found. Using simulated mode.")
-            self.model_type = "simulated"
-        elif model_type == "openai" and not self.api_key:
-            print("Warning: No OpenAI API key found. Using simulated mode.")
-            self.model_type = "simulated"
     
     def _load_finance_llm(self):
         """Load the AdaptLLM/finance-LLM model"""
@@ -99,9 +99,9 @@ class LLMAnalyzer:
                 outputs = self.finance_model.generate(
                     **inputs,
                     max_new_tokens=1000,
-                    temperature=0.7,
+                    temperature=self.temperature,
                     do_sample=True,
-                    top_p=0.9,
+                    top_p=self.top_p,
                     pad_token_id=self.finance_tokenizer.eos_token_id
                 )
             
@@ -128,7 +128,7 @@ class LLMAnalyzer:
     def generate_views_simulated(self, quarter_data: Dict) -> Dict:
         """
         Generate simulated views based on historical returns and simple heuristics
-        This is used as a fallback when no LLM API is available
+        This is used as a fallback when finance-llm model fails to load
         
         Args:
             quarter_data: Dictionary with quarterly data
@@ -136,7 +136,7 @@ class LLMAnalyzer:
         Returns:
             Views dictionary
         """
-        print("Using simulated views generation (no LLM API)")
+        print("Using simulated views generation (fallback mode)")
         
         quarter = quarter_data['quarter']
         views = []
@@ -178,102 +178,10 @@ class LLMAnalyzer:
             'method': 'simulated'
         }
     
-    def generate_views_anthropic(self, quarter_data: Dict) -> Optional[Dict]:
-        """
-        Generate views using Claude (Anthropic)
-        
-        Args:
-            quarter_data: Dictionary with quarterly data
-            
-        Returns:
-            Views dictionary or None if failed
-        """
-        try:
-            import anthropic
-            
-            client = anthropic.Anthropic(api_key=self.api_key)
-            
-            user_prompt = create_user_prompt(quarter_data)
-            
-            message = client.messages.create(
-                model="claude-3-5-sonnet-20241022",
-                max_tokens=4000,
-                system=SYSTEM_PROMPT,
-                messages=[
-                    {"role": "user", "content": user_prompt}
-                ]
-            )
-            
-            response_text = message.content[0].text
-            
-            # Save raw response for debugging
-            os.makedirs('output/llm_responses', exist_ok=True)
-            with open(f'output/llm_responses/{quarter_data["quarter"]}_response.txt', 'w') as f:
-                f.write(response_text)
-            
-            # Parse response
-            views = self.parser.parse_and_validate(response_text, quarter_data['quarter'])
-            views['method'] = 'anthropic'
-            
-            return views
-            
-        except ImportError:
-            print("Anthropic package not installed. Run: pip install anthropic")
-            return None
-        except Exception as e:
-            print(f"Error calling Anthropic API: {e}")
-            return None
-    
-    def generate_views_openai(self, quarter_data: Dict) -> Optional[Dict]:
-        """
-        Generate views using OpenAI GPT-4
-        
-        Args:
-            quarter_data: Dictionary with quarterly data
-            
-        Returns:
-            Views dictionary or None if failed
-        """
-        try:
-            import openai
-            
-            client = openai.OpenAI(api_key=self.api_key)
-            
-            user_prompt = create_user_prompt(quarter_data)
-            
-            response = client.chat.completions.create(
-                model="gpt-4-turbo-preview",
-                messages=[
-                    {"role": "system", "content": SYSTEM_PROMPT},
-                    {"role": "user", "content": user_prompt}
-                ],
-                temperature=0.7,
-                max_tokens=4000
-            )
-            
-            response_text = response.choices[0].message.content
-            
-            # Save raw response for debugging
-            os.makedirs('output/llm_responses', exist_ok=True)
-            with open(f'output/llm_responses/{quarter_data["quarter"]}_response.txt', 'w') as f:
-                f.write(response_text)
-            
-            # Parse response
-            views = self.parser.parse_and_validate(response_text, quarter_data['quarter'])
-            views['method'] = 'openai'
-            
-            return views
-            
-        except ImportError:
-            print("OpenAI package not installed. Run: pip install openai")
-            return None
-        except Exception as e:
-            print(f"Error calling OpenAI API: {e}")
-            return None
     
     def generate_views(self, quarter_data: Dict) -> Dict:
         """
-        Generate investment views for a quarter
+        Generate investment views for a quarter using local AdaptLLM/Finance-LLM model
         
         Args:
             quarter_data: Dictionary with all quarterly data
@@ -286,16 +194,14 @@ class LLMAnalyzer:
         
         views = None
         
-        # Try the configured method
+        # Try finance-llm first (local model)
         if self.model_type == "finance-llm":
             views = self.generate_views_finance_llm(quarter_data)
-        elif self.model_type == "anthropic":
-            views = self.generate_views_anthropic(quarter_data)
-        elif self.model_type == "openai":
-            views = self.generate_views_openai(quarter_data)
         
-        # Fallback to simulated if API failed or simulated was requested
+        # Fallback to simulated if finance-llm failed or simulated was requested
         if views is None or self.model_type == "simulated":
+            if self.model_type == "finance-llm" and views is None:
+                print("Finance-LLM model failed, falling back to simulated mode")
             views = self.generate_views_simulated(quarter_data)
         
         # Save views
@@ -342,7 +248,7 @@ def main():
     from data.loader import DataLoader
     
     loader = DataLoader()
-    analyzer = LLMAnalyzer(model_type="simulated")
+    analyzer = LLMAnalyzer(model_type="finance-llm")
     
     # Load Q1 2024 data
     data = loader.load_quarterly_data('Q1_2024')

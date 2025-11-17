@@ -2,10 +2,10 @@
 
 # LLM Settings
 llm:
-  model_type: "simulated"  # Options: simulated, finance-llm, anthropic, openai
-  # For API-based models, set environment variables:
-  # - ANTHROPIC_API_KEY for Claude
-  # - OPENAI_API_KEY for GPT-4
+  model_type: "finance-llm"  # Options: finance-llm (local AdaptLLM model, default) or simulated (fallback only)
+  # Finance-LLM requires: transformers and torch packages
+  # Model downloads automatically on first use (~7GB)
+  # GPU recommended but will work on CPU (slower)
 
 # Portfolio Settings
 portfolio:

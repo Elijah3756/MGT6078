@@ -1,58 +1,58 @@
 {
   "quarter": "Q4_2024",
   "weights": [
-    0.19497466057026053,
-    0.1953595063297853,
-    0.15805308624031178,
-    0.1387262409631578,
-    0.14781353792359328,
-    0.16507296797289134
+    0.17912633417333634,
+    0.18655039151600883,
+    0.187091276494076,
+    0.1440099440639552,
+    0.14611130915128065,
+    0.157110744601343
   ],
-  "sharpe": 0.021542920707705575,
+  "sharpe": 0.022168806994800252,
   "ticker_weights": {
-    "XLK": 0.19497466057026053,
-    "XLY": 0.1953595063297853,
-    "ITA": 0.15805308624031178,
-    "XLE": 0.1387262409631578,
-    "XLV": 0.14781353792359328,
-    "XLF": 0.16507296797289134
+    "XLK": 0.17912633417333634,
+    "XLY": 0.18655039151600883,
+    "ITA": 0.187091276494076,
+    "XLE": 0.1440099440639552,
+    "XLV": 0.14611130915128065,
+    "XLF": 0.157110744601343
   },
   "views_used": {
     "quarter": "Q4_2024",
     "views": [
       {
         "ticker": "XLK",
-        "expected_return": 0.0506,
+        "expected_return": 0.0532,
         "confidence": 40,
         "reasoning": "Strong momentum from previous quarter (+5.6%). Expecting continued but moderated growth."
       },
       {
         "ticker": "XLY",
-        "expected_return": 0.0867,
+        "expected_return": 0.0641,
         "confidence": 40,
         "reasoning": "Strong momentum from previous quarter (+12.4%). Expecting continued but moderated growth."
       },
       {
         "ticker": "ITA",
-        "expected_return": 0.0051,
+        "expected_return": 0.0645,
         "confidence": 40,
         "reasoning": "Stable performance expected based on historical patterns and current market conditions."
       },
       {
         "ticker": "XLE",
-        "expected_return": -0.0115,
+        "expected_return": 0.0035,
         "confidence": 40,
         "reasoning": "Stable performance expected based on historical patterns and current market conditions."
       },
       {
         "ticker": "XLV",
-        "expected_return": -0.0592,
+        "expected_return": 0.0065,
         "confidence": 40,
         "reasoning": "Recovery expected after previous decline (-10.2%). Mean reversion likely."
       },
       {
         "ticker": "XLF",
-        "expected_return": 0.0629,
+        "expected_return": 0.0223,
         "confidence": 40,
         "reasoning": "Strong momentum from previous quarter (+7.2%). Expecting continued but moderated growth."
       }
@@ -64,5 +64,16 @@
     "tau_for_covariance": 0.025,
     "tau_omega": 0.05,
     "relative_confidence": 1.0
+  },
+  "optimization_info": {
+    "success": true,
+    "message": "Optimization terminated successfully",
+    "iterations": 17,
+    "converged": true
+  },
+  "constraints": {
+    "allow_shorts": true,
+    "min_weight": -1.0,
+    "max_weight": 2.0
   }
 }

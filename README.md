@@ -69,16 +69,11 @@ python main.py
 ### Advanced Usage
 
 ```bash
-# Use AdaptLLM/finance-LLM local model
+# Use AdaptLLM/finance-LLM local model (default)
 python main.py --llm-type finance-llm
 
-# Use Claude (requires ANTHROPIC_API_KEY environment variable)
-export ANTHROPIC_API_KEY="your-key-here"
-python main.py --llm-type anthropic
-
-# Use OpenAI GPT-4 (requires OPENAI_API_KEY)
-export OPENAI_API_KEY="your-key-here"
-python main.py --llm-type openai
+# Use simulated mode (fallback, for testing)
+python main.py --llm-type simulated
 
 # Process specific quarters
 python main.py --quarters Q1_2024 Q2_2024 Q3_2024
@@ -89,25 +84,17 @@ python main.py --skip-charts
 
 ### LLM Options
 
-1. **Simulated** (default): Rule-based views generation
-   - No API required
-   - Fast and deterministic
-   - Good for testing
-
-2. **finance-llm**: AdaptLLM/finance-LLM local model
-   - Requires `transformers` and `torch`
-   - Runs locally (GPU recommended)
+1. **finance-llm** (default): AdaptLLM/finance-LLM local model
+   - Local model, no API required
+   - Requires `transformers` and `torch` packages
+   - Runs locally (GPU recommended, but works on CPU)
    - Financial domain-specific
+   - Model downloads automatically on first use (~7GB)
 
-3. **anthropic**: Claude API
-   - Requires API key
-   - High quality analysis
-   - Costs per API call
-
-4. **openai**: GPT-4 API
-   - Requires API key
-   - Strong reasoning
-   - Costs per API call
+2. **simulated**: Rule-based views generation (fallback only)
+   - Used automatically if finance-llm fails to load
+   - Fast and deterministic
+   - Good for testing/debugging
 
 ## Data Sources
 
@@ -245,6 +232,43 @@ Edit `optimization/portfolio_optimizer.py`:
 - Adjust weight bounds
 - Add sector constraints
 - Modify objective function
+
+### Hyperparameter Optimization
+
+Run hyperparameter optimization to find best settings:
+
+```bash
+# Random search (recommended)
+python hyperparameter_optimization.py --method random --n-trials 20
+
+# Grid search
+python hyperparameter_optimization.py --method grid --max-combinations 50
+```
+
+Results are saved to `output/hyperparameter_optimization/` with:
+- JSON files with all results and analysis
+- Automatic visualization generation
+
+### Visualize Optimization Results
+
+Generate graphs and analysis from optimization results:
+
+```bash
+# Visualize latest results
+python hyperparameter_visualization.py
+
+# Visualize specific results
+python hyperparameter_visualization.py --results-file path/to/results.json --analysis-file path/to/analysis.json
+```
+
+Creates visualizations including:
+- Hyperparameter importance analysis
+- Parameter vs metric relationships
+- Correlation heatmaps
+- Metric distributions
+- 2D hyperparameter spaces
+- Pareto frontier (risk vs return)
+- Top configurations comparison
 
 ## Project Structure
 
