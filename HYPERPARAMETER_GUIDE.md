@@ -108,6 +108,79 @@ python hyperparameter_optimization.py --method grid --max-combinations 50 --llm-
 python hyperparameter_optimization.py --method random --n-trials 20 --llm-type simulated
 ```
 
+### Machine Learning-Based Optimization (Recommended)
+
+The system now supports several ML-based hyperparameter tuning methods that are more efficient than random or grid search:
+
+#### 1. Bayesian Optimization (Gaussian Process)
+
+Uses Gaussian Process to model the objective function and intelligently select hyperparameters:
+
+```bash
+# Bayesian optimization with 30 trials (recommended for efficiency)
+python hyperparameter_optimization.py --method bayesian --n-trials 30 --llm-type finance-llm --objective sharpe_ratio
+
+# Optimize for annualized return instead
+python hyperparameter_optimization.py --method bayesian --n-trials 30 --llm-type finance-llm --objective annualized_return
+```
+
+**Advantages:**
+- More efficient than random search (finds better configs with fewer trials)
+- Models uncertainty in predictions
+- Good for expensive evaluations (like LLM inference)
+
+**Requirements:** `pip install scikit-optimize`
+
+#### 2. Tree-structured Parzen Estimator (TPE) - Optuna
+
+Uses TPE algorithm which is particularly effective for hyperparameter optimization:
+
+```bash
+# TPE optimization (default Optuna sampler)
+python hyperparameter_optimization.py --method optuna --n-trials 30 --llm-type finance-llm
+
+# Or explicitly specify TPE
+python hyperparameter_optimization.py --method optuna-tpe --n-trials 30 --llm-type finance-llm
+
+# CMA-ES sampler (alternative)
+python hyperparameter_optimization.py --method optuna-cmaes --n-trials 30 --llm-type finance-llm
+```
+
+**Advantages:**
+- State-of-the-art performance for hyperparameter optimization
+- Handles mixed parameter types well (continuous, discrete, categorical)
+- Multiple sampler options (TPE, CMA-ES, Random)
+
+**Requirements:** `pip install optuna`
+
+#### 3. Random Forest-Based Optimization
+
+Uses Random Forest surrogate model to guide hyperparameter search:
+
+```bash
+# Random Forest optimization
+python hyperparameter_optimization.py --method random-forest --n-trials 30 --llm-type finance-llm
+```
+
+**Advantages:**
+- Good for high-dimensional spaces
+- Handles non-linear relationships well
+- Fast predictions once trained
+
+**Requirements:** `pip install scikit-learn` (usually already installed)
+
+### Comparison of Methods
+
+| Method | Efficiency | Best For | Trials Needed |
+|--------|-----------|----------|---------------|
+| Random Search | Low | Quick exploration | 50-100+ |
+| Grid Search | Very Low | Small spaces | 20-50 |
+| Bayesian (GP) | High | Expensive evaluations | 20-40 |
+| Optuna (TPE) | Very High | General purpose | 20-40 |
+| Random Forest | Medium-High | High-dimensional | 30-50 |
+
+**Recommendation:** Start with **Optuna (TPE)** for best results, or **Bayesian Optimization** if you prefer scikit-optimize.
+
 ## Understanding Results
 
 The optimizer evaluates configurations using:
@@ -120,32 +193,51 @@ The optimizer evaluates configurations using:
 
 ### Best Practices
 
-1. **Start with Random Search**: Faster, explores diverse configurations
+1. **Start with ML-Based Methods**: Use Bayesian Optimization or Optuna (TPE) for better efficiency
 2. **Use Validation Quarters**: Don't optimize on test data
-3. **Focus on Sharpe Ratio**: Better risk-adjusted performance
+3. **Focus on Sharpe Ratio**: Better risk-adjusted performance (default objective)
 4. **Check Consistency**: Best config should work across multiple quarters
 5. **Consider Transaction Costs**: Very high turnover may not be realistic
+6. **Cache Results**: ML methods automatically cache evaluations to avoid redundant work
+7. **Start Small**: Begin with 20-30 trials, then increase if needed
 
 ### Example Workflow (Finance-LLM)
 
+**Recommended ML-Based Workflow:**
+
 ```bash
-# Step 1: Quick exploration with finance-llm (20 trials)
-python hyperparameter_optimization.py --method random --n-trials 20 --llm-type finance-llm
+# Step 1: ML-based optimization with Optuna TPE (30 trials)
+python hyperparameter_optimization.py --method optuna --n-trials 30 --llm-type finance-llm --objective sharpe_ratio
 
 # Step 2: Review results in output/hyperparameter_optimization/
 # Look at analysis_*.json for best configurations
 
-# Step 3: Fine-tune around best config (smaller grid search)
-# Manually test variations of best config
+# Step 3: Fine-tune around best config (optional - run more trials)
+python hyperparameter_optimization.py --method optuna --n-trials 20 --llm-type finance-llm --quarters Q1_2024 Q2_2024 Q3_2024
 
 # Step 4: Validate on hold-out quarters with best config
 python main.py --llm-type finance-llm --quarters Q1_2025 Q2_2025 Q3_2025
+```
+
+**Alternative: Quick Random Search Workflow:**
+
+```bash
+# Step 1: Quick exploration with random search (20 trials)
+python hyperparameter_optimization.py --method random --n-trials 20 --llm-type finance-llm
+
+# Step 2-4: Same as above
 ```
 
 **Note**: The finance-llm model requires:
 - `transformers` and `torch` installed
 - GPU recommended (but will work on CPU, slower)
 - Model downloads automatically on first use (~7GB)
+
+**ML Optimization Libraries:**
+- For Bayesian Optimization: `pip install scikit-optimize`
+- For Optuna (TPE): `pip install optuna`
+- For Random Forest: `scikit-learn` (usually already installed)
+- All libraries are optional - the script will use available methods
 
 ## Expected Results
 

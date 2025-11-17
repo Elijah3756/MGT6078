@@ -37,10 +37,12 @@ Your analysis should systematically consider:
    - Volatility patterns and risk characteristics
    - Relative performance vs. market
 
-## Expected Return Guidelines
+## View Types: Absolute vs Relative Views
 
-**Important**: Expected returns should represent your forecast for the NEXT QUARTER's return, expressed as a decimal.
+You can provide TWO types of views:
 
+### 1. Absolute Views (Traditional)
+Forecast the absolute return for a single ticker:
 - **Typical range**: -0.15 to +0.15 (-15% to +15% quarterly)
 - **Conservative view**: 0.01 to 0.05 (1% to 5% quarterly)
 - **Bullish view**: 0.05 to 0.15 (5% to 15% quarterly)
@@ -50,7 +52,20 @@ Your analysis should systematically consider:
 **Interpretation**:
 - 0.03 = 3% expected quarterly return
 - -0.05 = -5% expected quarterly return (negative view)
-- These are ABSOLUTE returns, not relative to market
+
+### 2. Relative Views (RECOMMENDED - More Forward-Looking)
+Forecast relative outperformance between two tickers. These are often more robust because:
+- They're easier to formulate (comparing assets is easier than predicting absolute returns)
+- They're less sensitive to market-wide shocks
+- They capture relative performance which is what portfolio optimization often cares about
+
+**Format**: "Ticker A will outperform Ticker B by X%"
+- **Typical range**: -0.10 to +0.10 (-10% to +10% relative outperformance)
+- **Strong outperformance**: 0.05 to 0.10 (5% to 10% relative)
+- **Moderate outperformance**: 0.02 to 0.05 (2% to 5% relative)
+- **Underperformance**: -0.10 to -0.02 (-10% to -2% relative)
+
+**Example**: "XLK will outperform XLY by 0.03" means XLK is expected to return 3% more than XLY
 
 ## Confidence Level Guidelines
 
@@ -70,17 +85,21 @@ Confidence (0-100) reflects your certainty in the expected return forecast:
 
 ## Output Format
 
-You MUST output valid JSON in this exact format:
+You MUST output valid JSON. You can use EITHER absolute views OR a mix of absolute and relative views.
+
+### Option 1: Absolute Views (Traditional)
 {
   "quarter": "Q1_2024",
   "views": [
     {
+      "type": "absolute",
       "ticker": "XLK",
       "expected_return": 0.03,
       "confidence": 75,
       "reasoning": "Brief but specific explanation (1-2 sentences)"
     },
     {
+      "type": "absolute",
       "ticker": "XLY",
       "expected_return": -0.02,
       "confidence": 60,
@@ -90,35 +109,91 @@ You MUST output valid JSON in this exact format:
   ]
 }
 
-## Example Output
+### Option 2: Mixed Absolute and Relative Views (RECOMMENDED)
+{
+  "quarter": "Q1_2024",
+  "views": [
+    {
+      "type": "absolute",
+      "ticker": "XLK",
+      "expected_return": 0.03,
+      "confidence": 75,
+      "reasoning": "Strong AI momentum..."
+    },
+    {
+      "type": "relative",
+      "ticker1": "XLK",
+      "ticker2": "XLY",
+      "expected_outperformance": 0.05,
+      "confidence": 80,
+      "reasoning": "Technology sector expected to outperform consumer discretionary due to..."
+    },
+    {
+      "type": "relative",
+      "ticker1": "XLE",
+      "ticker2": "XLV",
+      "expected_outperformance": -0.03,
+      "confidence": 65,
+      "reasoning": "Healthcare expected to outperform energy due to..."
+    }
+    // ... provide at least 3-6 views total (can mix absolute and relative)
+  ]
+}
+
+**Note**: For relative views, use "ticker1" and "ticker2" instead of "ticker", and "expected_outperformance" instead of "expected_return"
+
+## Example Output (Mixed Views - Recommended)
 
 {
   "quarter": "Q1_2024",
   "views": [
     {
+      "type": "absolute",
       "ticker": "XLK",
       "expected_return": 0.08,
       "confidence": 85,
       "reasoning": "Strong AI momentum, favorable Fed policy for growth stocks, and positive earnings revisions suggest above-market returns."
     },
     {
-      "ticker": "XLE",
-      "expected_return": -0.05,
-      "confidence": 70,
-      "reasoning": "Geopolitical tensions easing, potential supply increases, and transition away from fossil fuels create headwinds."
+      "type": "relative",
+      "ticker1": "XLK",
+      "ticker2": "XLY",
+      "expected_outperformance": 0.05,
+      "confidence": 80,
+      "reasoning": "Technology expected to outperform consumer discretionary due to stronger earnings growth and AI tailwinds."
+    },
+    {
+      "type": "relative",
+      "ticker1": "XLV",
+      "ticker2": "XLE",
+      "expected_outperformance": 0.04,
+      "confidence": 75,
+      "reasoning": "Healthcare sector resilience and aging demographics favor it over energy sector facing transition headwinds."
+    },
+    {
+      "type": "absolute",
+      "ticker": "XLF",
+      "expected_return": 0.02,
+      "confidence": 60,
+      "reasoning": "Moderate outlook for financials given mixed signals on interest rates and credit conditions."
     }
   ]
 }
 
 ## Critical Requirements
 
-1. **Provide views for ALL 6 tickers**: XLK, XLY, ITA, XLE, XLV, XLF
-2. **Expected returns must be decimals** (e.g., 0.03 not 3 or "3%")
-3. **Confidence must be integers between 0 and 100**
-4. **Reasoning should be specific** - reference actual data points from the provided information
-5. **Be balanced** - not all views should be bullish or bearish
-6. **Consider correlations** - related sectors (e.g., XLY and XLF) may have similar drivers
-7. **Output ONLY valid JSON** - no markdown formatting, no explanatory text outside JSON
+1. **Provide at least 3-6 views total** (can mix absolute and relative)
+2. **For absolute views**: Include "type": "absolute", "ticker", "expected_return" (decimal)
+3. **For relative views**: Include "type": "relative", "ticker1", "ticker2", "expected_outperformance" (decimal)
+4. **Expected returns/outperformance must be decimals** (e.g., 0.03 not 3 or "3%")
+5. **Confidence must be integers between 0 and 100**
+6. **Reasoning should be specific** - reference actual data points from the provided information
+7. **Be balanced** - not all views should be bullish or bearish
+8. **Consider correlations** - related sectors (e.g., XLY and XLF) may have similar drivers
+9. **Prefer relative views** - They are more forward-looking and robust to market-wide shocks
+10. **Output ONLY valid JSON** - no markdown formatting, no explanatory text outside JSON
+
+**Recommendation**: Use 2-3 absolute views for key sectors and 3-4 relative views for sector comparisons. This provides both anchor points and relative positioning.
 
 Your views will be used in a Black-Litterman portfolio optimization framework, so accuracy and calibration are critical."""
 

@@ -18,9 +18,10 @@ class ViewsConverter:
                            base_variance: float = 0.01) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
         Convert LLM views to P, Q, and Omega matrices
+        Supports both absolute and relative views
         
         Args:
-            views_data: Dictionary with LLM views
+            views_data: Dictionary with LLM views (can include absolute and relative views)
             base_variance: Base variance for uncertainty scaling
             
         Returns:
@@ -36,20 +37,45 @@ class ViewsConverter:
         
         # Build matrices from views
         for i, view in enumerate(views):
-            ticker = view['ticker']
-            expected_return = view['expected_return']
-            confidence = view['confidence']
+            view_type = view.get('type', 'absolute')  # Default to absolute for backward compatibility
+            confidence = view.get('confidence', 50)
             
-            # Get ticker index
-            ticker_idx = self.tickers.index(ticker)
+            if view_type == 'relative':
+                # Relative view: ticker1 will outperform ticker2 by expected_outperformance
+                ticker1 = view['ticker1']
+                ticker2 = view['ticker2']
+                expected_outperformance = view['expected_outperformance']
+                
+                # Get ticker indices
+                ticker1_idx = self.tickers.index(ticker1)
+                ticker2_idx = self.tickers.index(ticker2)
+                
+                # P matrix: relative view (1 for ticker1, -1 for ticker2, 0 for others)
+                P[i, ticker1_idx] = 1.0
+                P[i, ticker2_idx] = -1.0
+                
+                # Q vector: expected outperformance
+                Q[i, 0] = expected_outperformance
+                
+            else:
+                # Absolute view (default or explicit)
+                ticker = view.get('ticker')
+                if ticker is None:
+                    # Backward compatibility: try to infer from old format
+                    raise ValueError(f"View {i} missing 'ticker' field for absolute view")
+                
+                expected_return = view.get('expected_return', 0.0)
+                
+                # Get ticker index
+                ticker_idx = self.tickers.index(ticker)
+                
+                # P matrix: absolute view (1 for the ticker, 0 for others)
+                P[i, ticker_idx] = 1.0
+                
+                # Q vector: expected return
+                Q[i, 0] = expected_return
             
-            # P matrix: absolute view (1 for the ticker, 0 for others)
-            P[i, ticker_idx] = 1.0
-            
-            # Q vector: expected return
-            Q[i, 0] = expected_return
-            
-            # Omega matrix: diagonal with uncertainty
+            # Omega matrix: diagonal with uncertainty (same for both view types)
             # Higher confidence = lower uncertainty
             # Convert confidence (0-100) to uncertainty
             # confidence 100 -> uncertainty near 0
@@ -126,10 +152,20 @@ class ViewsConverter:
         print("Tickers:", self.tickers)
         print(P)
         
-        print("\nQ Vector (Expected Returns):")
+        print("\nQ Vector (Expected Returns/Outperformance):")
         for i in range(len(Q)):
-            ticker = self.tickers[np.argmax(P[i])]
-            print(f"  {ticker}: {Q[i][0]:+.4f} ({Q[i][0]*100:+.2f}%)")
+            # Check if this is a relative view (sum of P row is 0)
+            if np.sum(P[i]) == 0:
+                # Relative view: find ticker1 (positive) and ticker2 (negative)
+                ticker1_idx = np.where(P[i] > 0)[0][0]
+                ticker2_idx = np.where(P[i] < 0)[0][0]
+                ticker1 = self.tickers[ticker1_idx]
+                ticker2 = self.tickers[ticker2_idx]
+                print(f"  {ticker1} vs {ticker2}: {Q[i][0]:+.4f} ({Q[i][0]*100:+.2f}% outperformance)")
+            else:
+                # Absolute view
+                ticker = self.tickers[np.argmax(P[i])]
+                print(f"  {ticker}: {Q[i][0]:+.4f} ({Q[i][0]*100:+.2f}%)")
         
         print("\nOmega Matrix (View Uncertainties):")
         print("Diagonal:", np.diag(Omega))

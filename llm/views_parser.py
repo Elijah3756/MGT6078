@@ -52,7 +52,7 @@ class ViewsParser:
     
     def validate_views(self, views_data: Dict) -> Dict:
         """
-        Validate and clean views data
+        Validate and normalize views (supports both old and new formats)
         
         Args:
             views_data: Parsed views dictionary
@@ -66,34 +66,74 @@ class ViewsParser:
         
         validated_views = []
         for view in views_data['views']:
-            # Check required fields
-            if 'ticker' not in view or 'expected_return' not in view or 'confidence' not in view:
-                print(f"Warning: Missing required fields in view: {view}")
-                continue
+            # Determine view type (backward compatibility)
+            view_type = view.get('type', 'absolute')
+            if 'type' not in view:
+                if 'ticker1' in view and 'ticker2' in view:
+                    view_type = 'relative'
+                else:
+                    view_type = 'absolute'
             
-            # Validate ticker
-            if view['ticker'] not in self.tickers:
-                print(f"Warning: Unknown ticker: {view['ticker']}")
-                continue
-            
-            # Validate and bound values
-            expected_return = float(view['expected_return'])
-            confidence = float(view['confidence'])
-            
-            # Bound expected returns to reasonable range (-50% to +50%)
-            expected_return = max(-0.5, min(0.5, expected_return))
-            
-            # Bound confidence to 0-100
-            confidence = max(0, min(100, confidence))
-            
-            validated_view = {
-                'ticker': view['ticker'],
-                'expected_return': expected_return,
-                'confidence': confidence,
-                'reasoning': view.get('reasoning', 'No reasoning provided')
-            }
-            
-            validated_views.append(validated_view)
+            if view_type == 'relative':
+                # Validate relative view
+                if 'ticker1' not in view or 'ticker2' not in view:
+                    print(f"Warning: Relative view missing ticker1 or ticker2: {view}")
+                    continue
+                if 'expected_outperformance' not in view:
+                    print(f"Warning: Relative view missing expected_outperformance: {view}")
+                    continue
+                
+                ticker1 = view['ticker1']
+                ticker2 = view['ticker2']
+                if ticker1 not in self.tickers:
+                    print(f"Warning: Unknown ticker1: {ticker1}")
+                    continue
+                if ticker2 not in self.tickers:
+                    print(f"Warning: Unknown ticker2: {ticker2}")
+                    continue
+                
+                expected_outperformance = float(view['expected_outperformance'])
+                confidence = float(view.get('confidence', 50))
+                
+                # Bound values
+                expected_outperformance = max(-0.5, min(0.5, expected_outperformance))
+                confidence = max(0, min(100, confidence))
+                
+                validated_view = {
+                    'type': 'relative',
+                    'ticker1': ticker1,
+                    'ticker2': ticker2,
+                    'expected_outperformance': expected_outperformance,
+                    'confidence': confidence,
+                    'reasoning': view.get('reasoning', 'No reasoning provided')
+                }
+                validated_views.append(validated_view)
+            else:
+                # Validate absolute view (backward compatible)
+                if 'ticker' not in view or 'expected_return' not in view:
+                    print(f"Warning: Missing required fields in view: {view}")
+                    continue
+                
+                ticker = view['ticker']
+                if ticker not in self.tickers:
+                    print(f"Warning: Unknown ticker: {ticker}")
+                    continue
+                
+                expected_return = float(view['expected_return'])
+                confidence = float(view.get('confidence', 50))
+                
+                # Bound values
+                expected_return = max(-0.5, min(0.5, expected_return))
+                confidence = max(0, min(100, confidence))
+                
+                validated_view = {
+                    'type': 'absolute',
+                    'ticker': ticker,
+                    'expected_return': expected_return,
+                    'confidence': confidence,
+                    'reasoning': view.get('reasoning', 'No reasoning provided')
+                }
+                validated_views.append(validated_view)
         
         views_data['views'] = validated_views
         return views_data
@@ -127,28 +167,38 @@ class ViewsParser:
     def ensure_all_tickers(self, views_data: Dict) -> Dict:
         """
         Ensure all tickers have views, add defaults if missing
+        Note: For relative views, we don't require all tickers to be covered
         
         Args:
             views_data: Views dictionary
             
         Returns:
-            Complete views dictionary with all tickers
+            Complete views dictionary (may include relative views)
         """
-        existing_tickers = {view['ticker'] for view in views_data['views']}
+        # Collect all tickers mentioned in views
+        mentioned_tickers = set()
+        for view in views_data['views']:
+            view_type = view.get('type', 'absolute')
+            if view_type == 'relative':
+                mentioned_tickers.add(view.get('ticker1'))
+                mentioned_tickers.add(view.get('ticker2'))
+            else:
+                mentioned_tickers.add(view.get('ticker'))
         
-        for ticker in self.tickers:
-            if ticker not in existing_tickers:
-                print(f"Warning: Adding default view for missing ticker: {ticker}")
-                views_data['views'].append({
-                    'ticker': ticker,
-                    'expected_return': 0.02,
-                    'confidence': 30,
-                    'reasoning': 'Default view (ticker was missing from LLM response)'
-                })
-        
-        # Sort views by ticker order
-        ticker_order = {ticker: i for i, ticker in enumerate(self.tickers)}
-        views_data['views'].sort(key=lambda x: ticker_order.get(x['ticker'], 99))
+        # Add default absolute views for missing tickers (only if we have mostly absolute views)
+        absolute_views = [v for v in views_data['views'] if v.get('type', 'absolute') == 'absolute']
+        if len(absolute_views) > len(views_data['views']) / 2:
+            # If mostly absolute views, ensure all tickers covered
+            for ticker in self.tickers:
+                if ticker not in mentioned_tickers:
+                    print(f"Warning: Adding default view for missing ticker: {ticker}")
+                    views_data['views'].append({
+                        'type': 'absolute',
+                        'ticker': ticker,
+                        'expected_return': 0.02,
+                        'confidence': 30,
+                        'reasoning': 'Default view (ticker was missing from LLM response)'
+                    })
         
         return views_data
     
